@@ -3,17 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.29",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
+    "antd": "^4.0.1",
+    "lodash": "^4.17.15",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "typescript": "^3.7.5"
+    "request-promise": "^4.2.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +30,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.9.0",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "@types/request-promise": "^4.1.45",
+    "typescript": "^3.8.3"
   }
 }
