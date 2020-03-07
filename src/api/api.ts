@@ -16,14 +16,16 @@ interface AnimeAndManga {
   end_date: string;
 }
 
-export function getAnimeManga(type: string, title: string): rp.RequestPromise<AnimeAndManga[]> {
+function getAnimeManga(mediumType: string, name: string): rp.RequestPromise<AnimeAndManga> {
   const options = {
-    url: `https://api.jikan.moe/v3/search/${type}?q=${title}&page=1?limit=4`,
+    url: `https://api.jikan.moe/v3/search/${mediumType}?q=${name}&page=1&limit=4`,
     json: true
   };
   return rp(options);
 }
 
-export async function animeMangaInfo(type: string, title: string) {
-  const animeAndManga = await getAnimeManga(type, title);
+export async function animeMangaInfo(mediumType: string, name: string) {
+  const animeAndManga = await getAnimeManga(mediumType, name);
+  const { mal_id, url, image_url, title, airing, synopsis, type, episodes, members, score, start_date, end_date } = animeAndManga;
+  console.log(animeAndManga);
 }
