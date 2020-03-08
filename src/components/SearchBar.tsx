@@ -13,7 +13,7 @@ interface Props {
 export const SearchBar = (props: Props): JSX.Element => {
   const { setTitle, onClick } = props;
   return (
-    <div>
+    <span>
       <Input
         placeholder="Search anime/manga here"
         style={{ width: "300px" }}
@@ -33,6 +33,6 @@ export const SearchBar = (props: Props): JSX.Element => {
       >
         Search Manga
       </Button>
-    </div>
+    </span>
   );
 };

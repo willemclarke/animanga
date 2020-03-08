@@ -10,9 +10,6 @@ import { Row, Col } from "antd";
 
 const { Header, Content } = Layout;
 
-// input onChange will set the title to specific anime title
-// searchAnime, searchManga onClick will first setType to either anime/manga --> then perform fetchData command with type * title
-
 export const App: React.FC = () => {
   const [title, setTitle] = React.useState<string>("");
   const [data, setData] = React.useState<AnimeAndManga[]>([]);
@@ -24,18 +21,35 @@ export const App: React.FC = () => {
 
   return (
     <Layout>
-      <Header style={{ height: "130px", fontSize: "2rem", color: "white", justifyContent: "center" }}>
-        animanga-info <SearchBar setTitle={setTitle} onClick={onClick} />
+      <Header style={{ height: "80px", fontSize: "2rem", color: "white" }}>
+        <span style={{ paddingTop: "5px", paddingRight: "30px" }}>animanga-info</span>
+        <SearchBar setTitle={setTitle} onClick={onClick} />
       </Header>
       <Content>
         {/* List of anime/manga cards*/}
         <Row style={{ height: "100%", justifyContent: "center" }}>
-          <Col span={8} style={{ backgroundColor: "red", height: "100%" }}>
-            {_.map(data, (value, index) => {
-              const { image_url, title, score } = value;
-              return <AnimeMangaCard image_url={image_url} title={title} score={score} key={index} />;
-            })}
-          </Col>
+          {_.map(data, (value, index) => {
+            const { image_url, title, score } = value;
+            if (index <= 2) {
+              return (
+                <Col style={{ padding: "15px" }}>
+                  <AnimeMangaCard image_url={image_url} title={title} score={score} key={index} />
+                </Col>
+              );
+            }
+          })}
+        </Row>
+        <Row style={{ height: "100%", justifyContent: "center" }}>
+          {_.map(data, (value, index) => {
+            const { image_url, title, score } = value;
+            if (index > 2 && index <= 5) {
+              return (
+                <Col style={{ padding: "15px" }}>
+                  <AnimeMangaCard image_url={image_url} title={title} score={score} key={index} />
+                </Col>
+              );
+            }
+          })}
         </Row>
       </Content>
     </Layout>

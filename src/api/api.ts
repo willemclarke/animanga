@@ -44,6 +44,6 @@ export async function getAnimeManga(type: MediumType, title: string): Promise<An
     url: `https://api.jikan.moe/v3/search/${type}?q=${title}&page=1&limit=6`,
     json: true
   };
-  const resp: RawResponse = await rp(options);
-  return resp.results;
+  const response: RawResponse = await rp(options);
+  return response.results;
 }
