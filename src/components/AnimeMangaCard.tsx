@@ -7,23 +7,21 @@ const { Meta } = Card;
 interface Props {
   image_url: string;
   title: string;
-  score: number;
+  // score: number;
+  synopsis: string;
+  // type: string;
 }
 
-const gridStyle = {
-  width: "25%",
-  texAlign: "center"
-};
-
 export const AnimeMangaCard = (props: Props): JSX.Element => {
-  const { image_url, title, score } = props;
+  const { image_url, title, synopsis } = props;
   return (
-    <Card
-      hoverable
-      style={{ width: "225px", height: "330px" }}
-      cover={<img alt="cover" src={image_url} style={{ width: "225", height: "250px" }} />}
-    >
-      <Meta title={title} description={score} />
+    <Card bordered={false} style={{ height: "100%", width: "406px", backgroundColor: "#FAFAFA" }} title={title}>
+      <Card.Grid style={{ width: "100%", textAlign: "center" }} hoverable={false}>
+        <img alt="cover" src={image_url} style={{ width: "185px" }} />
+      </Card.Grid>
+      <Card.Grid style={{ width: "100%", textAlign: "center" }} hoverable={false}>
+        {synopsis}
+      </Card.Grid>
     </Card>
   );
 };

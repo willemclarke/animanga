@@ -21,31 +21,30 @@ export const App: React.FC = () => {
 
   return (
     <Layout>
-      <Header style={{ height: "80px", fontSize: "2rem", color: "white" }}>
-        <span style={{ paddingTop: "5px", paddingRight: "30px" }}>animanga-info</span>
+      <Header style={{ height: "55px", fontSize: "1.5rem", backgroundColor: "#1F2631", color: "white", paddingBottom: "25.5px" }}>
+        <span style={{ paddingTop: "5px", paddingRight: "15px" }}>animanga-info</span>
         <SearchBar setTitle={setTitle} onClick={onClick} />
       </Header>
-      <Content>
-        {/* List of anime/manga cards*/}
-        <Row style={{ height: "100%", justifyContent: "center" }}>
+      <Content style={{ height: "100vh", backgroundColor: "#EDF1F5" }}>
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="center">
           {_.map(data, (value, index) => {
-            const { image_url, title, score } = value;
+            const { image_url, title, synopsis } = value;
             if (index <= 2) {
               return (
-                <Col style={{ padding: "15px" }}>
-                  <AnimeMangaCard image_url={image_url} title={title} score={score} key={index} />
+                <Col span={5.25} style={{ padding: "35px 15px 15px 15px" }}>
+                  <AnimeMangaCard image_url={image_url} title={title} synopsis={synopsis} key={index} />
                 </Col>
               );
             }
           })}
         </Row>
-        <Row style={{ height: "100%", justifyContent: "center" }}>
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="center">
           {_.map(data, (value, index) => {
-            const { image_url, title, score } = value;
+            const { image_url, title, synopsis } = value;
             if (index > 2 && index <= 5) {
               return (
-                <Col style={{ padding: "15px" }}>
-                  <AnimeMangaCard image_url={image_url} title={title} score={score} key={index} />
+                <Col span={5.25} style={{ padding: "15px" }}>
+                  <AnimeMangaCard image_url={image_url} title={title} synopsis={synopsis} key={index} />
                 </Col>
               );
             }
