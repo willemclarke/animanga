@@ -24,7 +24,7 @@ interface RawResponse {
   ];
 }
 
-export interface AnimeAndManga {
+export interface AnimeAndMangaResponse {
   mal_id: number;
   url: string;
   image_url: string;
@@ -39,7 +39,7 @@ export interface AnimeAndManga {
   end_date: string;
 }
 
-export async function getAnimeManga(type: MediumType, title: string): Promise<AnimeAndManga[]> {
+export async function getAnimeManga(type: MediumType, title: string): Promise<AnimeAndMangaResponse[]> {
   const options = {
     url: `https://api.jikan.moe/v3/search/${type}?q=${title}&page=1&limit=6`,
     json: true

@@ -1,17 +1,16 @@
 import React from "react";
-
-import { MediumType } from "../api/api";
+import { MediumType } from "../../api/api";
 import { Button } from "antd";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-interface Props {
+export interface SearchBarProps {
   setTitle: (v: string) => void;
-  onClick: (MediumType: MediumType) => Promise<void>;
+  searchTitle: (MediumType: MediumType) => Promise<void>;
 }
 
-export const SearchBar = (props: Props): JSX.Element => {
-  const { setTitle, onClick } = props;
+export const SearchBar = (props: SearchBarProps): JSX.Element => {
+  const { setTitle, searchTitle } = props;
   return (
     <span>
       <Input
@@ -22,14 +21,14 @@ export const SearchBar = (props: Props): JSX.Element => {
       <Button
         type="primary"
         icon={<SearchOutlined />}
-        onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => onClick(MediumType.anime)}
+        onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => searchTitle(MediumType.anime)}
       >
         Search Anime
       </Button>
       <Button
         type="primary"
         icon={<SearchOutlined />}
-        onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => onClick(MediumType.manga)}
+        onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => searchTitle(MediumType.manga)}
       >
         Search Manga
       </Button>
