@@ -1,11 +1,6 @@
 import rp from 'request-promise';
 import _ from 'lodash';
 
-export enum MediumType {
-  anime = 'anime',
-  manga = 'manga',
-}
-
 interface RawResponse {
   results: [
     {
@@ -59,7 +54,7 @@ export async function getManga(title: string): Promise<AnimeAndMangaResponse[]> 
 }
 
 export async function search(title: string): Promise<AnimeAndMangaResponse[]> {
-  return Promise.all([getManga(title), getAnime(title)]).then((resps) => {
+  return Promise.all([getAnime(title), getManga(title)]).then((resps) => {
     return _.flatten(resps);
   });
 }
