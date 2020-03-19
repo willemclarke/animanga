@@ -1,8 +1,9 @@
-import rp from "request-promise";
+import rp from 'request-promise';
+import _ from 'lodash';
 
 export enum MediumType {
-  anime = "anime",
-  manga = "manga"
+  anime = 'anime',
+  manga = 'manga',
 }
 
 interface RawResponse {
@@ -20,11 +21,11 @@ interface RawResponse {
       score: number;
       start_date: string;
       end_date: string;
-    }
+    },
   ];
 }
 
-export interface AnimeAndManga {
+export interface AnimeAndMangaResponse {
   mal_id: number;
   url: string;
   image_url: string;
@@ -39,11 +40,26 @@ export interface AnimeAndManga {
   end_date: string;
 }
 
-export async function getAnimeManga(type: MediumType, title: string): Promise<AnimeAndManga[]> {
+export async function getAnime(title: string): Promise<AnimeAndMangaResponse[]> {
   const options = {
-    url: `https://api.jikan.moe/v3/search/${type}?q=${title}&page=1&limit=6`,
-    json: true
+    url: `https://api.jikan.moe/v3/search/anime?q=${title}&page=1&limit=6`,
+    json: true,
   };
   const response: RawResponse = await rp(options);
   return response.results;
+}
+
+export async function getManga(title: string): Promise<AnimeAndMangaResponse[]> {
+  const options = {
+    url: `https://api.jikan.moe/v3/search/manga?q=${title}&page=1&limit=6`,
+    json: true,
+  };
+  const response: RawResponse = await rp(options);
+  return response.results;
+}
+
+export async function search(title: string): Promise<AnimeAndMangaResponse[]> {
+  return Promise.all([getManga(title), getAnime(title)]).then((resps) => {
+    return _.flatten(resps);
+  });
 }
