@@ -15,12 +15,13 @@ export const AnimeMangaCard = (props: AnimeMangaCardProps): JSX.Element => {
       bordered={false}
       style={{ height: '100%', width: '300px', backgroundColor: '#FAFAFA', textAlign: 'center' }}
       title={title}
+      extra={type}
       hoverable={true}
       // onClick={() => alert("Hello from here")} onClick functionality works, need a function now
     >
-      <Card.Grid style={{ width: '100%', maxHeight: '10px', border: 'false' }} hoverable={false}>
+      {/* <Card.Grid style={{ width: '100%', maxHeight: '10px', border: 'false' }} hoverable={false}>
         <span>{type}</span>
-      </Card.Grid>
+      </Card.Grid> */}
       <Card.Grid style={{ width: '100%' }} hoverable={false}>
         <img alt="cover" src={image_url} style={{ width: '185px', height: '260px' }} />
       </Card.Grid>
