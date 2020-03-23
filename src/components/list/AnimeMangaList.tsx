@@ -27,46 +27,29 @@ export const AnimeMangaList = () => {
     return <Result status="500" title="500" subTitle={error.message} />;
   }
 
+  const grouped = _.chunk(data, 6);
+  const rows = _.map(grouped, (items) => {
+    const cols = _.map(items, (item) => {
+      const { image_url, title, synopsis, mal_id, type } = item;
+      return (
+        <Col span={4} style={{}}>
+          <AnimeMangaCard
+            mal_id={mal_id}
+            title={title}
+            type={type}
+            image_url={image_url}
+            synopsis={synopsis}
+            key={mal_id}
+          />
+        </Col>
+      );
+    });
+    return <Row gutter={[24, 24]}>{cols}</Row>;
+  });
+
   return (
-    <Layout style={{ height: '100%' }}>
-      <Content>
-        <Row justify="center">
-          {_.map(data, (value, index) => {
-            const { image_url, title, synopsis, mal_id, type } = value;
-            if (index <= 5) {
-              return (
-                <Col span={4} style={{ padding: '35px 15px 10px 15px' }}>
-                  <AnimeMangaCard
-                    title={title}
-                    type={type}
-                    image_url={image_url}
-                    synopsis={synopsis}
-                    key={mal_id}
-                  />
-                </Col>
-              );
-            }
-          })}
-        </Row>
-        <Row justify="center">
-          {_.map(data, (value, index) => {
-            const { image_url, title, synopsis, mal_id, type } = value;
-            if (index > 5 && index <= 11) {
-              return (
-                <Col span={4} style={{ padding: '35px 15px 15px 15px' }}>
-                  <AnimeMangaCard
-                    image_url={image_url}
-                    type={type}
-                    title={title}
-                    synopsis={synopsis}
-                    key={mal_id}
-                  />
-                </Col>
-              );
-            }
-          })}
-        </Row>
-      </Content>
+    <Layout style={{ height: '100%', padding: '24px' }}>
+      <Content>{rows}</Content>
     </Layout>
   );
 };
