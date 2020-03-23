@@ -15,6 +15,7 @@ export const App: React.FC = () => {
             <Route exact path="/">
               <AnimeMangaList />
             </Route>
+            <Route path="/items/:id">{/* AnimeMangaShow */}</Route>
           </Switch>
         </Layout>
       </QueryParamProvider>
