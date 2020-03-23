@@ -12,24 +12,16 @@ export interface AnimeMangaCardProps {
 
 export const AnimeMangaCard = (props: AnimeMangaCardProps): JSX.Element => {
   const { image_url, title, synopsis, type, mal_id } = props;
-  const gridStyle = { width: '100%' };
   return (
-    // <Link to={`/items/${mal_id}`}>
-    <Card
-      bordered={false}
-      style={{ backgroundColor: '#FAFAFA', textAlign: 'center' }}
-      title={title}
-      extra={type}
-      hoverable={true}
-    >
-      <Card.Grid style={gridStyle} hoverable={false}>
-        Hello
-        {/* <img alt="cover" src={image_url} style={{}} /> */}
-      </Card.Grid>
-      <Card.Grid style={gridStyle} hoverable={false}>
-        Snynopsis
-      </Card.Grid>
-    </Card>
-    // </Link>
+    <Link to={`/items/${mal_id}`}>
+      <Card
+        hoverable
+        title={title}
+        cover={<img alt="cover" src={image_url} style={{ width: '100%' }} />}
+        extra={type}
+      >
+        <Card.Meta title="Europe Street beat" description={synopsis} />
+      </Card>
+    </Link>
   );
 };

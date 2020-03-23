@@ -32,7 +32,7 @@ export const AnimeMangaList = () => {
     const cols = _.map(items, (item) => {
       const { image_url, title, synopsis, mal_id, type } = item;
       return (
-        <Col span={4} style={{ backgroundColor: 'red' }}>
+        <Col span={4} style={{}}>
           <AnimeMangaCard
             mal_id={mal_id}
             title={title}
@@ -44,11 +44,11 @@ export const AnimeMangaList = () => {
         </Col>
       );
     });
-    return <Row gutter={[16, 16]}>{cols}</Row>;
+    return <Row gutter={[24, 24]}>{cols}</Row>;
   });
 
   return (
-    <Layout style={{ height: '100%' }}>
+    <Layout style={{ height: '100%', padding: '24px' }}>
       <Content>{rows}</Content>
     </Layout>
   );
