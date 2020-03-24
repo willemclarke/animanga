@@ -2,20 +2,23 @@ import { Input, Layout } from 'antd';
 import _ from 'lodash';
 import React from 'react';
 import { StringParam, useQueryParam } from 'use-query-params';
+import { Link } from 'react-router-dom';
 
 const BrandNav = () => {
   return (
-    <span
-      style={{
-        color: 'white',
-        fontSize: '1.25rem',
-        fontWeight: 700,
-        marginRight: '1rem',
-        float: 'left',
-      }}
-    >
-      Animanga
-    </span>
+    <Link to="/">
+      <span
+        style={{
+          color: 'white',
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          marginRight: '1rem',
+          float: 'left',
+        }}
+      >
+        Animanga
+      </span>
+    </Link>
   );
 };
 

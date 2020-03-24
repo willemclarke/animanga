@@ -2,7 +2,7 @@ import rp from 'request-promise';
 import _ from 'lodash';
 
 // Search related API request interfaces:
-export interface AnimeAndMangaResponse {
+export interface SearchAnimeAndMangaResponse {
   mal_id: number;
   url: string;
   image_url: string;
@@ -20,40 +20,99 @@ export interface AnimeAndMangaResponse {
   rated: string;
 }
 
-interface AnimeResponse {
+interface GetAnimeResponse {
   mal_id: number;
   url: string;
   image_url: string;
+  trailer_url: string;
   title: string;
-  airing: boolean;
-  synopsis: string;
+  title_japanese: string;
   type: string;
+  source: string;
   episodes: number;
+  airing: boolean;
+  status: string; //eg "Finished Airing"
+  aired: {
+    prop: {
+      string: string; // nice date format
+    };
+  };
+  duration: string;
+  rating: string;
   score: number;
-  start_date: string;
-  end_date: string;
+  scored_by: number;
+  rank: number;
+  popularity: number;
   members: number;
-  rated: string;
+  favorites: number;
+  synopsis: string;
+  premiered: string;
+  producers: [
+    {
+      name: string;
+      url: string;
+    },
+  ];
+  studios: [
+    {
+      name: string; //E.g. production I.G.
+      url: string;
+    },
+  ];
+  genres: [
+    {
+      name: string; //e.g. Action
+      url: string;
+    },
+  ];
 }
 
-interface MangaResponse {
+interface GetMangaResponse {
   mal_id: number;
   url: string;
   image_url: string;
   title: string;
-  publishing: boolean;
-  synopsis: string;
+  title_japanese: string;
   type: string;
-  chapters: number;
+  source: string;
   volumes: number;
+  chapters: number;
+  publishing: boolean;
+  status: string; //eg "Finished Airing"
+  published: {
+    prop: {
+      string: string; // nice date format
+    };
+  };
+  rank: number;
   score: number;
-  start_date: string;
-  end_date: string;
+  scored_by: number;
+  popularity: number;
   members: number;
+  favorites: number;
+  synopsis: string;
+  genres: [
+    {
+      name: string; //e.g. Action
+      url: string;
+    },
+  ];
+  authors: [
+    {
+      name: string;
+      url: string;
+    },
+  ];
+  serializations: [
+    {
+      name: string;
+      url: string;
+    },
+  ];
 }
 
 // Search related API requests:
-export async function getAnime(title: string): Promise<AnimeAndMangaResponse[]> {
+export async function getAnime(title: string): Promise<SearchAnimeAndMangaResponse[]> {
   const options = {
     url: `https://api.jikan.moe/v3/search/anime?q=${title}&page=1&limit=6`,
     json: true,
@@ -62,7 +121,7 @@ export async function getAnime(title: string): Promise<AnimeAndMangaResponse[]> 
   return response.results;
 }
 
-export async function getManga(title: string): Promise<AnimeAndMangaResponse[]> {
+export async function getManga(title: string): Promise<SearchAnimeAndMangaResponse[]> {
   const options = {
     url: `https://api.jikan.moe/v3/search/manga?q=${title}&page=1&limit=6`,
     json: true,
@@ -71,14 +130,14 @@ export async function getManga(title: string): Promise<AnimeAndMangaResponse[]> 
   return response.results;
 }
 
-export async function search(title: string): Promise<AnimeAndMangaResponse[]> {
+export async function search(title: string): Promise<SearchAnimeAndMangaResponse[]> {
   return Promise.all([getAnime(title), getManga(title)]).then((resps) => {
     return _.flatten(resps);
   });
 }
 
 // Anime specific requests:
-export async function getAnimeData(id: number): Promise<any> {
+export async function getAnimeData(id: number): Promise<GetAnimeResponse> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/`,
     json: true,
@@ -115,7 +174,7 @@ export async function getAnimeReviews(id: number): Promise<any> {
 }
 
 // Manga specific requests:
-export async function getMangaData(id: number): Promise<any> {
+export async function getMangaData(id: number): Promise<GetMangaResponse> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}/`,
     json: true,

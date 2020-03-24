@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Col, Row } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 export interface AnimeMangaCardProps {
   title: string;
@@ -10,17 +11,26 @@ export interface AnimeMangaCardProps {
   mal_id: number;
 }
 
+function getItemUrl(type: string, mal_id: number): string {
+  const animeTypes = ['TV', 'Movie', 'OVA', 'ONA'];
+  if (_.includes(animeTypes, type)) {
+    return `/anime/${mal_id}`;
+  } else {
+    return `/manga/${mal_id}`;
+  }
+}
+
 export const AnimeMangaCard = (props: AnimeMangaCardProps): JSX.Element => {
   const { image_url, title, synopsis, type, mal_id } = props;
   return (
-    <Link to={`/items/${mal_id}`}>
+    <Link to={getItemUrl(type, mal_id)}>
       <Card
         hoverable
         title={title}
         cover={<img alt="cover" src={image_url} style={{ width: '100%' }} />}
         extra={type}
       >
-        <Card.Meta title="Europe Street beat" description={synopsis} />
+        <Card.Meta title={title} description={synopsis} />
       </Card>
     </Link>
   );
