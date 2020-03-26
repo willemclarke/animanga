@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AnimeMangaList } from './components/list/AnimeMangaList';
-import { Anime } from './components/item/Anime';
-import { Manga } from './components/item/Manga';
+import { Anime } from './components/item/anime/Anime';
+import { Manga } from './components/item/manga/Manga';
 import { NavBar } from './components/nav/NavBar';
 import { QueryParamProvider } from 'use-query-params';
 import { Layout } from 'antd';

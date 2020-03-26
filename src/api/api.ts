@@ -20,6 +20,7 @@ export interface SearchAnimeAndMangaResponse {
   rated: string;
 }
 
+// Anime related interfaces:
 export interface GetAnimeResponse {
   mal_id: number;
   url: string;
@@ -55,7 +56,21 @@ export interface GetAnimeResponse {
         url: string;
       },
     ];
-    'Side Story': [
+    Prequel?: [
+      {
+        type: string;
+        name: string;
+        url: string;
+      },
+    ];
+    Sequel?: [
+      {
+        type: string;
+        name: string;
+        url: string;
+      },
+    ];
+    'Side Story'?: [
       {
         type: string;
         name: string;
@@ -90,6 +105,72 @@ export interface GetAnimeResponse {
   ];
 }
 
+interface AnimeCharacters {
+  characters: [
+    {
+      url: string;
+      image_url: string;
+      name: string;
+      role: string;
+      voice_actors: [
+        {
+          name: string;
+          url: string;
+          image_url: string;
+          language: string;
+        },
+      ];
+    },
+  ];
+  staff: [
+    {
+      url: string;
+      name: string;
+      image_url: string;
+      positions: string[];
+    },
+  ];
+}
+
+interface AnimeScoreData {
+  watching: number;
+  completed: number;
+  on_hold: number;
+  dropped: number;
+  plan_to_watch: number;
+  total: number;
+  scores: {
+    [rating: number]: {
+      votes: number;
+      percentage: number;
+    };
+  };
+}
+
+interface AnimeReviews {
+  [review: number]: {
+    url: string;
+    helpful_count: number;
+    date: string;
+    content: string;
+    reviewer: {
+      username: string;
+      url: string;
+      image_url: string;
+      episodes_seen: number;
+      scores: {
+        overall: number;
+        story: number;
+        animation: number;
+        sound: number;
+        character: number;
+        emjoyment: number;
+      };
+    };
+  };
+}
+
+// Manga related interfaces:
 export interface GetMangaResponse {
   mal_id: number;
   url: string;
@@ -185,25 +266,25 @@ export async function getAnimeData(id: number): Promise<GetAnimeResponse> {
   return response;
 }
 
-export async function getAnimeCharacters(id: number): Promise<any> {
+export async function getAnimeCharacters(id: number): Promise<AnimeCharacters> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/characters_staff`,
     json: true,
   };
   const response = await rp(options);
-  return response.characters;
+  return response;
 }
 
-export async function getAnimeScoreInfo(id: number): Promise<any> {
+export async function getAnimeScoreInfo(id: number): Promise<AnimeScoreData> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/stats`,
     json: true,
   };
   const response = await rp(options);
-  return response.scores;
+  return response;
 }
 
-export async function getAnimeReviews(id: number): Promise<any> {
+export async function getAnimeReviews(id: number): Promise<AnimeScoreData> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/reviews`,
     json: true,

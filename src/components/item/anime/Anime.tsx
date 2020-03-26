@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { Col, Row, Layout, Spin, Result, Card, Divider } from 'antd';
 import { useParams } from 'react-router-dom';
-import { getAnimeData, GetAnimeResponse } from '../../api/api';
+import { getAnimeData, GetAnimeResponse } from '../../../api/api';
 import { useQuery } from 'react-query';
 
 const { Content } = Layout;
@@ -34,12 +34,12 @@ export const Anime = () => {
         <Col span={3}>
           <Card
             bordered={false}
-            cover={<img src={data?.image_url} style={{ width: '231.88px' }} />}
-            style={{ width: '231.88px', height: '321.97px' }}
+            cover={<img src={data?.image_url} style={{ width: '231px', height: '306.19px' }} />}
+            style={{ width: '231.88px', height: '306.19px' }}
           ></Card>
         </Col>
         <Col span={12}>
-          <Card bordered={false} title={data?.title}>
+          <Card bordered={false} title={data.title}>
             <h3>Synopsis:</h3>
             <p>{truncatedSynopsis}</p>
           </Card>
@@ -160,7 +160,7 @@ export const Anime = () => {
   };
 
   return (
-    <Layout style={{ height: '100vh', padding: '24px' }}>
+    <Layout style={{ height: '100%', padding: '24px' }}>
       <Content>
         {headerAnime()}
         {leftInfo()}
