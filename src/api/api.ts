@@ -10,9 +10,9 @@ export interface SearchAnimeAndMangaResponse {
   airing: boolean;
   synopsis: string;
   type: string;
-  episodes?: number | undefined;
-  chapters?: number | undefined;
-  volumes?: number | undefined;
+  episodes?: number;
+  chapters?: number;
+  volumes?: number;
   score: number;
   start_date: string;
   end_date: string;
@@ -20,7 +20,7 @@ export interface SearchAnimeAndMangaResponse {
   rated: string;
 }
 
-interface GetAnimeResponse {
+export interface GetAnimeResponse {
   mal_id: number;
   url: string;
   image_url: string;
@@ -89,7 +89,7 @@ interface GetAnimeResponse {
   ];
 }
 
-interface GetMangaResponse {
+export interface GetMangaResponse {
   mal_id: number;
   url: string;
   image_url: string;
