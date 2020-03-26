@@ -34,7 +34,7 @@ export const Anime = () => {
         <Col span={3}>
           <Card
             bordered={false}
-            cover={<img src={data?.image_url} />}
+            cover={<img src={data?.image_url} style={{ width: '231.88px' }} />}
             style={{ width: '231.88px', height: '321.97px' }}
           ></Card>
         </Col>
@@ -50,17 +50,23 @@ export const Anime = () => {
 
   const leftInfo = () => {
     const studios = _.map(data.studios, (studio) => {
-      return (
-        <div>
-          <b>Studios: </b>
-          <a href={studio.url}>{studio.name}</a>
-        </div>
-      );
+      return <a href={studio.url}>{`${studio.name}, `}</a>;
     });
 
     const producers = _.map(data.producers, (producer) => {
       return <a href={producer.url}>{`${producer.name}, `}</a>;
     });
+
+    console.log(data.licensors, 'LICENSORS');
+
+    const licensors = _.isEmpty(data.licensors) ? (
+      <span>None found</span>
+    ) : (
+      _.map(data.licensors, (license) => {
+        return <a href={license.url}>{license.name}</a>;
+      })
+    );
+
     const genres = _.map(data.genres, (genre) => {
       return <a href={genre.url}>{`${genre.name}, `}</a>;
     });
@@ -93,7 +99,14 @@ export const Anime = () => {
                 <b>Producers: </b>
                 {producers}
               </div>
-              {studios}
+              <div>
+                <b>Licensors: </b>
+                {licensors}
+              </div>
+              <div>
+                <b>Studios: </b>
+                {studios}
+              </div>
               <div>
                 <b>Source: </b> {data.source}
               </div>

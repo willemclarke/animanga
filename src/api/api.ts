@@ -75,6 +75,7 @@ export interface GetAnimeResponse {
       url: string;
     },
   ];
+
   studios: [
     {
       name: string; //E.g. production I.G.
