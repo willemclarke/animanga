@@ -17,7 +17,7 @@ export const AnimeMangaList = () => {
 
   if (isFetching) {
     return (
-      <Layout style={{ height: '100%' }}>
+      <Layout style={{ height: '100vh' }}>
         <Spin />
       </Layout>
     );
@@ -48,7 +48,7 @@ export const AnimeMangaList = () => {
   });
 
   return (
-    <Layout style={{ height: '100%', padding: '24px' }}>
+    <Layout style={{ height: '100vh', padding: '24px' }}>
       <Content>{rows}</Content>
     </Layout>
   );

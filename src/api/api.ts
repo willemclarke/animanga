@@ -47,7 +47,29 @@ interface GetAnimeResponse {
   favorites: number;
   synopsis: string;
   premiered: string;
+  related: {
+    Adaptation: [
+      {
+        type: string;
+        name: string;
+        url: string;
+      },
+    ];
+    'Side Story': [
+      {
+        type: string;
+        name: string;
+        url: string;
+      },
+    ];
+  };
   producers: [
+    {
+      name: string;
+      url: string;
+    },
+  ];
+  licensors: [
     {
       name: string;
       url: string;
@@ -78,7 +100,7 @@ interface GetMangaResponse {
   volumes: number;
   chapters: number;
   publishing: boolean;
-  status: string; //eg "Finished Airing"
+  status: string;
   published: {
     prop: {
       string: string; // nice date format
@@ -91,6 +113,22 @@ interface GetMangaResponse {
   members: number;
   favorites: number;
   synopsis: string;
+  related: {
+    Adaptation: [
+      {
+        type: string;
+        name: string;
+        url: string;
+      },
+    ];
+    'Side Story': [
+      {
+        type: string;
+        name: string;
+        url: string;
+      },
+    ];
+  };
   genres: [
     {
       name: string; //e.g. Action
@@ -139,7 +177,7 @@ export async function search(title: string): Promise<SearchAnimeAndMangaResponse
 // Anime specific requests:
 export async function getAnimeData(id: number): Promise<GetAnimeResponse> {
   const options = {
-    url: `https://api.jikan.moe/v3/anime/${id}/`,
+    url: `https://api.jikan.moe/v3/anime/${id}`,
     json: true,
   };
   const response = await rp(options);
@@ -176,11 +214,10 @@ export async function getAnimeReviews(id: number): Promise<any> {
 // Manga specific requests:
 export async function getMangaData(id: number): Promise<GetMangaResponse> {
   const options = {
-    url: `https://api.jikan.moe/v3/manga/${id}/`,
+    url: `https://api.jikan.moe/v3/manga/${id}`,
     json: true,
   };
-  const response = await rp(options);
-  return response;
+  return await rp(options);
 }
 
 export async function getMangaCharacters(id: number): Promise<any> {
