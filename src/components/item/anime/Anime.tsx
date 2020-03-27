@@ -2,9 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import { AnimeHeader } from './components/AnimeHeader';
 import { LeftInformation } from './components/LeftInformation';
-import { Layout, Spin, Result } from 'antd';
+import { Layout, Spin, Result, Row, Col } from 'antd';
 import { useParams } from 'react-router-dom';
-import { getAnimeData, GetAnimeResponse } from '../../../api/api';
+import { getAnimeData, getAnimeCharacters } from '../../../api/api';
 import { useQuery } from 'react-query';
 
 const { Content } = Layout;
@@ -29,10 +29,13 @@ export const Anime = () => {
   }
 
   return (
-    <Layout style={{ height: '100%', padding: '24px' }}>
+    <Layout style={{ height: '100%' }}>
+      <AnimeHeader data={data} />
       <Content>
-        <AnimeHeader data={data} />
-        <LeftInformation data={data} />
+        <Row gutter={14} justify="center" style={{ marginTop: '15px' }}>
+          <LeftInformation data={data} /> {/*Component span={4} */}
+          <Col span={12}></Col> {/*Render overview component here */}
+        </Row>
       </Content>
     </Layout>
   );
