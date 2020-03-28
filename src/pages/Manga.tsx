@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row, Layout, Spin, Result } from 'antd';
 import { useParams } from 'react-router-dom';
-import { getMangaData } from '../../../api/api';
+import { getMangaData } from '../api/api';
 import { useQuery } from 'react-query';
 
 export const Manga = () => {

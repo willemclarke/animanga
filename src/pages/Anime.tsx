@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
-import { AnimeHeader } from './components/AnimeHeader';
-import { LeftInformation } from './components/LeftInformation';
+import { AnimeHeader } from '../components/anime/AnimeHeader';
+import { LeftInformation } from '../components/anime/LeftInformation';
 import { Layout, Spin, Result, Row, Col } from 'antd';
 import { useParams } from 'react-router-dom';
-import { getAnimeData, getAnimeCharacters } from '../../../api/api';
+import { getAnimeData } from '../api/api';
 import { useQuery } from 'react-query';
 
 const { Content } = Layout;
@@ -34,7 +34,7 @@ export const Anime = () => {
       <Content>
         <Row gutter={14} justify="center" style={{ marginTop: '15px' }}>
           <LeftInformation data={data} /> {/*Component span={4} */}
-          <Col span={12}></Col> {/*Render overview component here */}
+          <Col span={12}></Col>
         </Row>
       </Content>
     </Layout>

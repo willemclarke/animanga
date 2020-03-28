@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { GetAnimeResponse } from '../../../../api/api';
+import { GetAnimeResponse } from '../../api/api';
 import { Col, Row, Card, Divider } from 'antd';
 
 interface Props {

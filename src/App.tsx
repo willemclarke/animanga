@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { AnimeMangaList } from './components/list/AnimeMangaList';
-import { Anime } from './components/item/anime/Anime';
-import { Manga } from './components/item/manga/Manga';
-import { NavBar } from './components/nav/NavBar';
+import { Home } from './pages/Home';
+import { Anime } from './pages/Anime';
+import { Manga } from './pages/Manga';
+import { NavBar } from './components/NavBar';
 import { QueryParamProvider } from 'use-query-params';
 import { Layout } from 'antd';
 
@@ -15,7 +15,7 @@ export const App: React.FC = () => {
           <NavBar />
           <Switch>
             <Route exact path="/">
-              <AnimeMangaList />
+              <Home />
             </Route>
             <Route path="/anime/:id">
               <Anime />

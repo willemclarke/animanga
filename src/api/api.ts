@@ -2,22 +2,28 @@ import rp from 'request-promise';
 import _ from 'lodash';
 
 // Search related API request interfaces:
-export interface SearchAnimeAndMangaResponse {
+export interface AnimeListResponse {
   mal_id: number;
-  url: string;
   image_url: string;
   title: string;
-  airing: boolean;
   synopsis: string;
   type: string;
-  episodes?: number;
-  chapters?: number;
-  volumes?: number;
-  score: number;
-  start_date: string;
-  end_date: string;
-  members: number;
-  rated: string;
+}
+
+export interface MangaListResponse {
+  mal_id: number;
+  image_url: string;
+  title: string;
+  synopsis: string;
+  type: string;
+}
+
+export interface SearchResponse {
+  mal_id: number;
+  image_url: string;
+  title: string;
+  type: string;
+  synopsis: string;
 }
 
 // Anime related interfaces:
@@ -232,7 +238,7 @@ export interface GetMangaResponse {
 }
 
 // Search related API requests:
-export async function getAnime(title: string): Promise<SearchAnimeAndMangaResponse[]> {
+export async function getAnimeList(title: string): Promise<AnimeListResponse[]> {
   const options = {
     url: `https://api.jikan.moe/v3/search/anime?q=${title}&page=1&limit=6`,
     json: true,
@@ -241,7 +247,7 @@ export async function getAnime(title: string): Promise<SearchAnimeAndMangaRespon
   return response.results;
 }
 
-export async function getManga(title: string): Promise<SearchAnimeAndMangaResponse[]> {
+export async function getMangaList(title: string): Promise<MangaListResponse[]> {
   const options = {
     url: `https://api.jikan.moe/v3/search/manga?q=${title}&page=1&limit=6`,
     json: true,
@@ -250,8 +256,8 @@ export async function getManga(title: string): Promise<SearchAnimeAndMangaRespon
   return response.results;
 }
 
-export async function search(title: string): Promise<SearchAnimeAndMangaResponse[]> {
-  return Promise.all([getAnime(title), getManga(title)]).then((resps) => {
+export async function search(title: string): Promise<SearchResponse[]> {
+  return Promise.all([getAnimeList(title), getMangaList(title)]).then((resps) => {
     return _.flatten(resps);
   });
 }

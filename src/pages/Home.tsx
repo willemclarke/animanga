@@ -3,12 +3,12 @@ import React from 'react';
 import { Col, Layout, Result, Row, Spin } from 'antd';
 import { useQuery } from 'react-query';
 import { StringParam, useQueryParam } from 'use-query-params';
-import { search } from '../../api/api';
-import { AnimeMangaCard } from './AnimeMangaCard';
+import { search } from '../api/api';
+import { AnimeMangaCard } from '../components/anime/AnimeMangaCard';
 
 const { Content } = Layout;
 
-export const AnimeMangaList = () => {
+export const Home = () => {
   const [searchTerm] = useQueryParam('search', StringParam);
 
   const { isFetching, data, error } = useQuery(searchTerm || 'search', () =>
