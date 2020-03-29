@@ -1,33 +1,33 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeResponse } from '../../api/api';
-import { Col, Row, Card, Divider } from 'antd';
+import { Col, Card, Divider } from 'antd';
 
 interface Props {
   data: AnimeResponse;
 }
 
-export const LeftInformation = (props: Props) => {
+export const GeneralInformation = (props: Props) => {
   const { data } = props;
 
-  const studios = _.map(data.studios, (studio) => {
-    return <a href={studio.url}>{`${studio.name}, `}</a>;
+  const studios = _.map(data.studios, (studio, index) => {
+    return <a href={studio.url} key={index}>{`${studio.name}, `}</a>;
   });
 
-  const producers = _.map(data.producers, (producer) => {
-    return <a href={producer.url}>{`${producer.name}, `}</a>;
+  const producers = _.map(data.producers, (producer, index) => {
+    return <a href={producer.url} key={index}>{`${producer.name}, `}</a>;
   });
 
   const licensors = _.isEmpty(data.licensors) ? (
     <span>None found</span>
   ) : (
-    _.map(data.licensors, (license) => {
-      return <a href={license.url}>{`${license.name}, `}</a>;
+    _.map(data.licensors, (license, index) => {
+      return <a href={license.url} key={index}>{`${license.name}, `}</a>;
     })
   );
 
-  const genres = _.map(data.genres, (genre) => {
-    return <a href={genre.url}>{`${genre.name}, `}</a>;
+  const genres = _.map(data.genres, (genre, index) => {
+    return <a href={genre.url} key={index}>{`${genre.name}, `}</a>;
   });
 
   return (

@@ -1,12 +1,9 @@
-import _ from 'lodash';
 import React from 'react';
-import { Col, Layout, Result, Row, Spin } from 'antd';
+import { HomeSearch } from '../components/home-search/HomeSearch';
+import { Layout, Result, Spin } from 'antd';
 import { useQuery } from 'react-query';
 import { StringParam, useQueryParam } from 'use-query-params';
 import { search } from '../api/api';
-import { AnimeMangaCard } from '../components/anime/AnimeMangaCard';
-
-const { Content } = Layout;
 
 export const Home = () => {
   const [searchTerm] = useQueryParam('search', StringParam);
@@ -23,33 +20,13 @@ export const Home = () => {
     );
   }
 
-  if (error) {
-    return <Result status="500" title="500" subTitle={error.message} />;
+  if (error || !data) {
+    return <Result status="500" title="500" subTitle={error?.message} />;
   }
-
-  const grouped = _.chunk(data, 6);
-  const rows = _.map(grouped, (items) => {
-    const cols = _.map(items, (item) => {
-      const { image_url, title, synopsis, mal_id, type } = item;
-      return (
-        <Col span={4} style={{}}>
-          <AnimeMangaCard
-            mal_id={mal_id}
-            title={title}
-            type={type}
-            image_url={image_url}
-            synopsis={synopsis}
-            key={mal_id}
-          />
-        </Col>
-      );
-    });
-    return <Row gutter={[24, 24]}>{cols}</Row>;
-  });
 
   return (
     <Layout style={{ height: '100vh', padding: '24px' }}>
-      <Content>{rows}</Content>
+      <HomeSearch data={data} />
     </Layout>
   );
 };

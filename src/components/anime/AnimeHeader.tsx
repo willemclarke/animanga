@@ -18,6 +18,7 @@ export const AnimeHeader = (props: Props): JSX.Element => {
           bordered={false}
           cover={
             <img
+              alt=""
               src={data.image_url}
               style={{ height: '381.19px', boxShadow: '0, 0, 30px, 333' }}
             />

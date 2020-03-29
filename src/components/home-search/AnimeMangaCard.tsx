@@ -1,7 +1,7 @@
 import React from 'react';
+import _ from 'lodash';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
 
 export interface AnimeMangaCardProps {
   title: string;
@@ -27,7 +27,7 @@ export const AnimeMangaCard = (props: AnimeMangaCardProps): JSX.Element => {
       <Card
         hoverable
         title={title}
-        cover={<img alt="cover" src={image_url} style={{ width: '100%' }} />}
+        cover={<img alt="" src={image_url} style={{ width: '100%' }} />}
         extra={type}
       >
         <Card.Meta title={title} description={synopsis} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeCharacters } from '../../api/api';
-import { Col, Row, Card, Divider } from 'antd';
+import { Col, Row, Card } from 'antd';
 
 interface CharacterCardProps {
   image_url: string;
@@ -16,7 +16,7 @@ interface Props {
 export const CharacterCard = (props: CharacterCardProps) => {
   const { image_url, name, role } = props;
   return (
-    <Card cover={<img src={image_url} />}>
+    <Card cover={<img alt="" src={image_url} />}>
       <Card.Meta title={name} description={role}></Card.Meta>
     </Card>
   );
@@ -29,20 +29,20 @@ export const OverviewCharacters = (props: Props) => {
   const grouped = _.chunk(slicedData, 3);
 
   const rows = _.map(grouped, (items) => {
-    const cols = _.map(items, (item) => {
+    const cols = _.map(items, (item, index) => {
       const { image_url, name, role } = item;
       return (
-        <Col span={6}>
+        <Col span={3} key={index}>
           <CharacterCard image_url={image_url} name={name} role={role} />
         </Col>
       );
     });
-    return <Row gutter={[16, 16]}>{cols}</Row>;
+    return (
+      <Row gutter={[16, 16]} justify="center">
+        {cols}
+      </Row>
+    );
   });
 
-  return (
-    <Col span={12} style={{ backgroundColor: 'red' }}>
-      {rows}
-    </Col>
-  );
+  return <Col span={12}>{rows}</Col>;
 };
