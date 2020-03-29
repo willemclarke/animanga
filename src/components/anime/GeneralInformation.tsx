@@ -31,7 +31,7 @@ export const GeneralInformation = (props: Props) => {
   });
 
   return (
-    <Col span={4}>
+    <Col span={3}>
       <Card bordered={false}>
         <div className="information-title">
           <h3>Information</h3>

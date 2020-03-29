@@ -10,7 +10,7 @@ interface Props {
   data: SearchResponse[];
 }
 
-export const HomeSearch = (props: Props) => {
+export const Search = (props: Props) => {
   const { data } = props;
 
   const grouped = _.chunk(data, 6);

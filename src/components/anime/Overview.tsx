@@ -1,24 +1,101 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeCharacters } from '../../api/api';
-import { Col, Row, Card } from 'antd';
+import { Col, Row, Card, Typography } from 'antd';
 
 interface CharacterCardProps {
   image_url: string;
   name: string;
   role: string;
+  url: string;
+  voice_actors: [
+    {
+      name: string;
+      url: string;
+      image_url: string;
+      language: string;
+    },
+  ];
 }
 
 interface Props {
   data: AnimeCharacters[];
 }
 
-export const CharacterCard = (props: CharacterCardProps) => {
-  const { image_url, name, role } = props;
+export const CharacterStaffCard = (props: CharacterCardProps) => {
+  const { image_url, name, role, url, voice_actors } = props;
+
   return (
-    <Card cover={<img alt="" src={image_url} />}>
-      <Card.Meta title={name} description={role}></Card.Meta>
-    </Card>
+    <div
+      style={{
+        height: '80px',
+        display: 'inline-grid',
+        gridTemplateColumns: '50% 50%',
+        overflow: 'hidden',
+      }}
+    >
+      <Card
+        className="character"
+        bordered={false}
+        style={{
+          display: 'inline-grid',
+          gridTemplateColumns: '60px auto',
+          gridTemplateAreas: 'image content',
+          height: '80px',
+          width: '168.66px',
+        }}
+        bodyStyle={{
+          height: '80px',
+          width: '108.66px',
+          padding: '5px',
+          fontSize: '0.9rem',
+          overflow: 'hidden',
+        }}
+        cover={
+          <img
+            alt=""
+            src={image_url}
+            style={{ height: '80px', width: '60px', gridArea: 'image' }}
+          />
+        }
+      >
+        <div style={{ gridArea: 'content', overflow: 'hidden' }}>
+          <a href={url}>{name}</a>
+          <div>{role}</div>
+        </div>
+      </Card>
+      <Card
+        className="staff"
+        bordered={false}
+        style={{
+          display: 'inline-grid',
+          gridTemplateColumns: '60px auto',
+          gridTemplateAreas: 'image content',
+          height: '80px',
+          width: '168.66px',
+          transform: 'scaleX(-1)',
+        }}
+        bodyStyle={{
+          height: '80px',
+          width: '108.66px',
+          padding: '5px',
+          fontSize: '0.9rem',
+          overflow: 'hidden',
+        }}
+        cover={
+          <img
+            alt=""
+            src={voice_actors[0].image_url}
+            style={{ height: '80px', width: '60px', gridArea: 'image' }}
+          />
+        }
+      >
+        <div style={{ gridArea: 'content', overflow: 'hidden', transform: 'scaleX(-1)' }}>
+          <a href={voice_actors[0].url}>{voice_actors[0].name}</a>
+          <div>{voice_actors[0].language}</div>
+        </div>
+      </Card>
+    </div>
   );
 };
 
@@ -30,19 +107,32 @@ export const OverviewCharacters = (props: Props) => {
 
   const rows = _.map(grouped, (items) => {
     const cols = _.map(items, (item, index) => {
-      const { image_url, name, role } = item;
+      const { image_url, name, role, url, voice_actors } = item;
       return (
-        <Col span={3} key={index}>
-          <CharacterCard image_url={image_url} name={name} role={role} />
+        <Col key={index}>
+          <CharacterStaffCard
+            image_url={image_url}
+            name={name}
+            role={role}
+            url={url}
+            voice_actors={voice_actors}
+          />
         </Col>
       );
     });
     return (
-      <Row gutter={[16, 16]} justify="center">
+      <Row gutter={[24, 16]} justify="center">
         {cols}
       </Row>
     );
   });
 
-  return <Col span={12}>{rows}</Col>;
+  return (
+    <Col span={14}>
+      <div style={{ marginLeft: '20px' }}>
+        <h3>Characters</h3>
+      </div>
+      {rows}
+    </Col>
+  );
 };
