@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
-import { GetAnimeResponse } from '../../api/api';
+import { AnimeResponse } from '../../api/api';
 import { Col, Row, Card, Breadcrumb } from 'antd';
 
 interface Props {
-  data: GetAnimeResponse;
+  data: AnimeResponse;
 }
 
 export const AnimeHeader = (props: Props): JSX.Element => {
@@ -18,7 +18,7 @@ export const AnimeHeader = (props: Props): JSX.Element => {
           bordered={false}
           cover={
             <img
-              src={data?.image_url}
+              src={data.image_url}
               style={{ height: '381.19px', boxShadow: '0, 0, 30px, 333' }}
             />
           }

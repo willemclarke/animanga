@@ -27,7 +27,7 @@ export interface SearchResponse {
 }
 
 // Anime related interfaces:
-export interface GetAnimeResponse {
+export interface AnimeResponse {
   mal_id: number;
   url: string;
   image_url: string;
@@ -111,7 +111,7 @@ export interface GetAnimeResponse {
   ];
 }
 
-interface AnimeCharacters {
+export interface AnimeCharacters {
   characters: [
     {
       url: string;
@@ -177,7 +177,7 @@ interface AnimeReviews {
 }
 
 // Manga related interfaces:
-export interface GetMangaResponse {
+export interface MangaResponse {
   mal_id: number;
   url: string;
   image_url: string;
@@ -263,7 +263,7 @@ export async function search(title: string): Promise<SearchResponse[]> {
 }
 
 // Anime specific requests:
-export async function getAnimeData(id: number): Promise<GetAnimeResponse> {
+export async function getAnimeData(id: number): Promise<AnimeResponse> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}`,
     json: true,
@@ -300,7 +300,7 @@ export async function getAnimeReviews(id: number): Promise<AnimeScoreData> {
 }
 
 // Manga specific requests:
-export async function getMangaData(id: number): Promise<GetMangaResponse> {
+export async function getMangaData(id: number): Promise<MangaResponse> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}`,
     json: true,
