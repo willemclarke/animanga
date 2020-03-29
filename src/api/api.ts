@@ -112,22 +112,21 @@ export interface AnimeResponse {
 }
 
 export interface AnimeCharacters {
-  characters: [
+  url: string;
+  image_url: string;
+  name: string;
+  role: string;
+  voice_actors: [
     {
+      name: string;
       url: string;
       image_url: string;
-      name: string;
-      role: string;
-      voice_actors: [
-        {
-          name: string;
-          url: string;
-          image_url: string;
-          language: string;
-        },
-      ];
+      language: string;
     },
   ];
+}
+
+export interface AnimeStaff {
   staff: [
     {
       url: string;
@@ -272,13 +271,22 @@ export async function getAnimeData(id: number): Promise<AnimeResponse> {
   return response;
 }
 
-export async function getAnimeCharacters(id: number): Promise<AnimeCharacters> {
+export async function getAnimeCharacters(id: number): Promise<AnimeCharacters[]> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/characters_staff`,
     json: true,
   };
   const response = await rp(options);
-  return response;
+  return response.characters;
+}
+
+export async function getAnimeStaff(id: number): Promise<AnimeStaff> {
+  const options = {
+    url: `https://api.jikan.moe/v3/anime/${id}/characters_staff`,
+    json: true,
+  };
+  const response = await rp(options);
+  return response.staff;
 }
 
 export async function getAnimeScoreInfo(id: number): Promise<AnimeScoreData> {

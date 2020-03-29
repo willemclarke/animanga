@@ -10,7 +10,7 @@ interface CharacterCardProps {
 }
 
 interface Props {
-  data: AnimeCharacters;
+  data: AnimeCharacters[];
 }
 
 export const CharacterCard = (props: CharacterCardProps) => {
@@ -24,7 +24,10 @@ export const CharacterCard = (props: CharacterCardProps) => {
 
 export const OverviewCharacters = (props: Props) => {
   const { data } = props;
-  const grouped = _.chunk(data.characters, 3);
+
+  const slicedData = _.slice(data, 0, 6);
+  const grouped = _.chunk(slicedData, 3);
+
   const rows = _.map(grouped, (items) => {
     const cols = _.map(items, (item) => {
       const { image_url, name, role } = item;
@@ -36,6 +39,7 @@ export const OverviewCharacters = (props: Props) => {
     });
     return <Row gutter={[16, 16]}>{cols}</Row>;
   });
+
   return (
     <Col span={12} style={{ backgroundColor: 'red' }}>
       {rows}
