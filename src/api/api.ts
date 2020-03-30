@@ -127,14 +127,10 @@ export interface AnimeCharacters {
 }
 
 export interface AnimeStaff {
-  staff: [
-    {
-      url: string;
-      name: string;
-      image_url: string;
-      positions: string[];
-    },
-  ];
+  url: string;
+  name: string;
+  image_url: string;
+  positions: string[];
 }
 
 export interface AnimeScoreData {
@@ -280,7 +276,7 @@ export async function getAnimeCharacters(id: number): Promise<AnimeCharacters[]>
   return response.characters;
 }
 
-export async function getAnimeStaff(id: number): Promise<AnimeStaff> {
+export async function getAnimeStaff(id: number): Promise<AnimeStaff[]> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/characters_staff`,
     json: true,
