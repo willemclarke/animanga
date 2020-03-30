@@ -122,7 +122,7 @@ export const SixCharacters = (props: CharacterProps) => {
       );
     });
     return (
-      <Row gutter={[30, 12]} justify="center">
+      <Row gutter={[40, 16]} justify="center">
         {cols}
       </Row>
     );
@@ -138,88 +138,126 @@ export const SixCharacters = (props: CharacterProps) => {
   );
 };
 
-interface ScoreProps {
+interface StatusProps {
   data: AnimeScoreData;
 }
 
-export const StatusDistribution = (props: ScoreProps) => {
+export const StatusDistribution = (props: StatusProps) => {
   const { data } = props;
   const { watching, completed, dropped, on_hold, plan_to_watch } = data;
 
   return (
-    <div>
+    <Row gutter={[30, 12]} style={{ width: '100%' }}>
       <div>
-        <h3>Status Distribution</h3>
+        <h3>Characters</h3>
       </div>
-
-      <Row gutter={[30, 12]}>
-        <Col span={4.5}>
+      <Card
+        bordered={false}
+        style={{ width: '100%' }}
+        bodyStyle={{
+          display: 'flex',
+          alignItems: 'side-by-side',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+        <Col span={5}>
           <Card
             title="Completed"
             bordered={false}
             style={{ width: '100%' }}
             headStyle={{ backgroundColor: '#68D639', color: 'white' }}
-            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+            bodyStyle={{
+              padding: '8px',
+              fontSize: '1rem',
+              backgroundColor: '#F0F2F5',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
           >{`${completed} users`}</Card>
         </Col>
-        <Col span={4.5}>
+        <Col span={5}>
           <Card
             title="Planning"
             bordered={false}
             style={{ width: '100%' }}
             headStyle={{ backgroundColor: '#02A9FF', color: 'white' }}
-            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+            bodyStyle={{
+              padding: '8px',
+              fontSize: '1rem',
+              backgroundColor: '#F0F2F5',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
           >{`${plan_to_watch} users`}</Card>
         </Col>
-        <Col span={4.5}>
+        <Col span={5}>
           <Card
             title="Watching"
             bordered={false}
             style={{ width: '100%' }}
             headStyle={{ backgroundColor: '#9256F4', color: 'white' }}
-            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+            bodyStyle={{
+              padding: '8px',
+              fontSize: '1rem',
+              backgroundColor: '#F0F2F5',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
           >{`${watching} users`}</Card>
         </Col>
-        <Col span={4.5}>
+        <Col span={5}>
           <Card
             title="Paused"
             bordered={false}
             style={{ width: '100%' }}
             headStyle={{ backgroundColor: '#F779A4', color: 'white' }}
-            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+            bodyStyle={{
+              padding: '8px',
+              fontSize: '1rem',
+              backgroundColor: '#F0F2F5',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
           >{`${on_hold} users`}</Card>
         </Col>
-        <Col span={4.5}>
+        <Col span={5}>
           <Card
             title="Dropped"
             bordered={false}
             style={{ width: '100%' }}
             headStyle={{ backgroundColor: '#E85D75', color: 'white' }}
-            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+            bodyStyle={{
+              padding: '8px',
+              fontSize: '1rem',
+              backgroundColor: '#F0F2F5',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
           >{`${dropped} users`}</Card>
         </Col>
-      </Row>
-    </div>
+      </Card>
+    </Row>
   );
 };
 
 interface OverviewProps {
   generalInformation: AnimeResponse;
   characters: AnimeCharacters[];
-  scores: AnimeScoreData;
+  status: AnimeScoreData;
 }
 
 export const Overview = (props: OverviewProps) => {
-  const { generalInformation, characters, scores } = props;
+  const { generalInformation, characters, status } = props;
   return (
-    <Row gutter={12} justify="center" style={{ marginTop: '20px' }}>
+    <Row gutter={[24, 16]} justify="center" style={{ marginTop: '20px' }}>
       <GeneralInformation data={generalInformation} />
       <Col span={14}>
-        <Row gutter={12} justify="center">
+        <Row gutter={[12, 12]} justify="center" style={{ width: '100%' }}>
           <SixCharacters data={characters} />
         </Row>
-        <Row gutter={12} justify="center" style={{ marginTop: '10px' }}>
-          <StatusDistribution data={scores} />
+        <Row gutter={[12, 12]} justify="center" style={{ marginTop: '20px' }}>
+          <StatusDistribution data={status} />
         </Row>
       </Col>
     </Row>

@@ -49,7 +49,7 @@ export const Anime = () => {
     <Layout style={{ height: '100%' }}>
       <AnimeHeader data={anime} />
       <Content>
-        <Overview generalInformation={anime} characters={characters} scores={scores} />
+        <Overview generalInformation={anime} characters={characters} status={scores} />
       </Content>
     </Layout>
   );

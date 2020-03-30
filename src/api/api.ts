@@ -38,7 +38,7 @@ export interface AnimeResponse {
   source: string;
   episodes: number;
   airing: boolean;
-  status: string; //eg "Finished Airing"
+  status: string;
   aired: {
     prop: {
       string: string; // nice date format
@@ -99,13 +99,13 @@ export interface AnimeResponse {
 
   studios: [
     {
-      name: string; //E.g. production I.G.
+      name: string;
       url: string;
     },
   ];
   genres: [
     {
-      name: string; //e.g. Action
+      name: string;
       url: string;
     },
   ];
@@ -152,7 +152,7 @@ export interface AnimeScoreData {
   };
 }
 
-interface AnimeReviews {
+export interface AnimeReviews {
   [review: number]: {
     url: string;
     helpful_count: number;
