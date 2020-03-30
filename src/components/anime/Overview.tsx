@@ -149,7 +149,7 @@ export const StatusDistribution = (props: StatusProps) => {
   return (
     <Row gutter={[30, 12]} style={{ width: '100%' }}>
       <div>
-        <h3>Characters</h3>
+        <h3>Status Distribution</h3>
       </div>
       <Card
         bordered={false}
