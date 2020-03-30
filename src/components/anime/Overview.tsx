@@ -1,7 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-import { AnimeCharacters } from '../../api/api';
-import { Col, Row, Card, Typography } from 'antd';
+import { AnimeCharacters, AnimeScoreData, AnimeResponse } from '../../api/api';
+import { GeneralInformation } from './GeneralInformation';
+import { Col, Row, Card } from 'antd';
 
 interface CharacterCardProps {
   image_url: string;
@@ -18,11 +19,7 @@ interface CharacterCardProps {
   ];
 }
 
-interface Props {
-  data: AnimeCharacters[];
-}
-
-export const CharacterStaffCard = (props: CharacterCardProps) => {
+export const CharacterAndStaffCard = (props: CharacterCardProps) => {
   const { image_url, name, role, url, voice_actors } = props;
 
   return (
@@ -99,7 +96,11 @@ export const CharacterStaffCard = (props: CharacterCardProps) => {
   );
 };
 
-export const OverviewCharacters = (props: Props) => {
+interface CharacterProps {
+  data: AnimeCharacters[];
+}
+
+export const SixCharacters = (props: CharacterProps) => {
   const { data } = props;
 
   const slicedData = _.slice(data, 0, 6);
@@ -110,7 +111,7 @@ export const OverviewCharacters = (props: Props) => {
       const { image_url, name, role, url, voice_actors } = item;
       return (
         <Col key={index}>
-          <CharacterStaffCard
+          <CharacterAndStaffCard
             image_url={image_url}
             name={name}
             role={role}
@@ -121,18 +122,106 @@ export const OverviewCharacters = (props: Props) => {
       );
     });
     return (
-      <Row gutter={[24, 16]} justify="center">
+      <Row gutter={[30, 12]} justify="center">
         {cols}
       </Row>
     );
   });
 
   return (
-    <Col span={14}>
-      <div style={{ marginLeft: '20px' }}>
+    <div>
+      <div>
         <h3>Characters</h3>
       </div>
       {rows}
-    </Col>
+    </div>
+  );
+};
+
+interface ScoreProps {
+  data: AnimeScoreData;
+}
+
+export const StatusDistribution = (props: ScoreProps) => {
+  const { data } = props;
+  const { watching, completed, dropped, on_hold, plan_to_watch } = data;
+
+  return (
+    <div>
+      <div>
+        <h3>Status Distribution</h3>
+      </div>
+
+      <Row gutter={[30, 12]}>
+        <Col span={4.5}>
+          <Card
+            title="Completed"
+            bordered={false}
+            style={{ width: '100%' }}
+            headStyle={{ backgroundColor: '#68D639', color: 'white' }}
+            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+          >{`${completed} users`}</Card>
+        </Col>
+        <Col span={4.5}>
+          <Card
+            title="Planning"
+            bordered={false}
+            style={{ width: '100%' }}
+            headStyle={{ backgroundColor: '#02A9FF', color: 'white' }}
+            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+          >{`${plan_to_watch} users`}</Card>
+        </Col>
+        <Col span={4.5}>
+          <Card
+            title="Watching"
+            bordered={false}
+            style={{ width: '100%' }}
+            headStyle={{ backgroundColor: '#9256F4', color: 'white' }}
+            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+          >{`${watching} users`}</Card>
+        </Col>
+        <Col span={4.5}>
+          <Card
+            title="Paused"
+            bordered={false}
+            style={{ width: '100%' }}
+            headStyle={{ backgroundColor: '#F779A4', color: 'white' }}
+            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+          >{`${on_hold} users`}</Card>
+        </Col>
+        <Col span={4.5}>
+          <Card
+            title="Dropped"
+            bordered={false}
+            style={{ width: '100%' }}
+            headStyle={{ backgroundColor: '#E85D75', color: 'white' }}
+            bodyStyle={{ padding: '8px', fontSize: '1rem', alignItems: 'center' }}
+          >{`${dropped} users`}</Card>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+interface OverviewProps {
+  generalInformation: AnimeResponse;
+  characters: AnimeCharacters[];
+  scores: AnimeScoreData;
+}
+
+export const Overview = (props: OverviewProps) => {
+  const { generalInformation, characters, scores } = props;
+  return (
+    <Row gutter={12} justify="center" style={{ marginTop: '20px' }}>
+      <GeneralInformation data={generalInformation} />
+      <Col span={14}>
+        <Row gutter={12} justify="center">
+          <SixCharacters data={characters} />
+        </Row>
+        <Row gutter={12} justify="center" style={{ marginTop: '10px' }}>
+          <StatusDistribution data={scores} />
+        </Row>
+      </Col>
+    </Row>
   );
 };

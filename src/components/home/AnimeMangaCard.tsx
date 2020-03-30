@@ -22,12 +22,13 @@ function getItemUrl(type: string, mal_id: number): string {
 
 export const AnimeMangaCard = (props: AnimeMangaCardProps): JSX.Element => {
   const { image_url, title, synopsis, type, mal_id } = props;
+
   return (
     <Link to={getItemUrl(type, mal_id)}>
       <Card
         hoverable
         title={title}
-        cover={<img alt="" src={image_url} style={{ width: '100%' }} />}
+        cover={<img alt="" src={image_url} style={{ height: '287px', width: '100%' }} />}
         extra={type}
       >
         <Card.Meta title={title} description={synopsis} />

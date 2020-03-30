@@ -1,10 +1,9 @@
 import React from 'react';
 import { AnimeHeader } from '../components/anime/AnimeHeader';
-import { GeneralInformation } from '../components/anime/GeneralInformation';
-import { OverviewCharacters } from '../components/anime/Overview';
-import { Layout, Spin, Result, Row } from 'antd';
+import { Overview } from '../components/anime/Overview';
+import { Layout, Spin, Result, Row, Col } from 'antd';
 import { useParams } from 'react-router-dom';
-import { getAnimeData, getAnimeCharacters } from '../api/api';
+import { getAnimeData, getAnimeCharacters, getAnimeScoreInfo } from '../api/api';
 import { useQuery } from 'react-query';
 
 const { Content } = Layout;
@@ -27,7 +26,14 @@ export const Anime = () => {
     },
   );
 
-  if (animeIsFetching || charactersIsFetching) {
+  const { isFetching: scoresIsFetching, data: scores, error: scoresError } = useQuery(
+    `scoreKey`,
+    () => {
+      return getAnimeScoreInfo(idToNumber);
+    },
+  );
+
+  if (animeIsFetching || charactersIsFetching || scoresIsFetching) {
     return (
       <Layout style={{ height: '100vh' }}>
         <Spin />
@@ -35,7 +41,7 @@ export const Anime = () => {
     );
   }
 
-  if (animeError || charactersError || !anime || !characters) {
+  if (animeError || charactersError || scoresError || !anime || !characters || !scores) {
     return <Result status="500" title="500" subTitle={animeError?.message} />;
   }
 
@@ -43,10 +49,7 @@ export const Anime = () => {
     <Layout style={{ height: '100%' }}>
       <AnimeHeader data={anime} />
       <Content>
-        <Row gutter={14} justify="center" style={{ marginTop: '15px' }}>
-          <GeneralInformation data={anime} />
-          <OverviewCharacters data={characters} />
-        </Row>
+        <Overview generalInformation={anime} characters={characters} scores={scores} />
       </Content>
     </Layout>
   );

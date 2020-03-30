@@ -137,7 +137,7 @@ export interface AnimeStaff {
   ];
 }
 
-interface AnimeScoreData {
+export interface AnimeScoreData {
   watching: number;
   completed: number;
   on_hold: number;

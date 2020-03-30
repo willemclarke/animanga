@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { AnimeResponse } from '../../api/api';
 import { Col, Card, Divider } from 'antd';
+import { StarFilled, HeartFilled } from '@ant-design/icons';
 
 interface Props {
   data: AnimeResponse;
@@ -32,7 +33,29 @@ export const GeneralInformation = (props: Props) => {
 
   return (
     <Col span={3}>
-      <Card bordered={false}>
+      <Card bordered={false} bodyStyle={{ padding: '8px' }}>
+        <div>
+          <StarFilled style={{ color: 'yellow' }}></StarFilled>
+          <span>
+            <b>{` #${data.rank} Highest Rated All Time`}</b>
+          </span>
+        </div>
+      </Card>
+
+      <Card
+        bordered={false}
+        style={{ marginTop: '10px', marginBottom: '10px' }}
+        bodyStyle={{ padding: '8px' }}
+      >
+        <div>
+          <HeartFilled style={{ color: 'red' }}></HeartFilled>
+          <span>
+            <b>{` #${data.popularity} Most Popular All Time`}</b>
+          </span>
+        </div>
+      </Card>
+
+      <Card bordered={false} className="general-info-card">
         <div className="information-title">
           <h3>Information</h3>
           <Divider style={{ margin: '1px' }}></Divider>
