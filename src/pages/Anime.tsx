@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnimeHeader } from '../components/anime/AnimeHeader';
-import { Overview } from '../components/anime/Overview';
+import { Overview } from '../components/anime/overview/Overview';
 import { Layout, Spin, Result, Row, Col } from 'antd';
 import { useParams } from 'react-router-dom';
 import { getAnimeData, getAnimeCharacters, getAnimeScoreInfo, getAnimeStaff } from '../api/api';
