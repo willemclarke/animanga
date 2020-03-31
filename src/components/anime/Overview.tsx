@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { AnimeCharacters, AnimeScoreData, AnimeResponse, AnimeStaff } from '../../api/api';
+import { AnimeCharacter, AnimeScoreData, AnimeResponse, AnimeStaff } from '../../api/api';
 import { GeneralInformation } from './GeneralInformation';
 import { Col, Row, Card } from 'antd';
 
@@ -97,7 +97,7 @@ export const CharacterAndStaffCard = (props: CharacterCardProps) => {
 };
 
 interface CharacterProps {
-  data: AnimeCharacters[];
+  data: AnimeCharacter[];
 }
 
 export const SixCharacters = (props: CharacterProps) => {
@@ -308,7 +308,7 @@ export const ThreeStaffCards = (props: ThreeStaffCardProps) => {
 
 interface OverviewProps {
   generalInformation: AnimeResponse;
-  characters: AnimeCharacters[];
+  characters: AnimeCharacter[];
   staff: AnimeStaff[];
   status: AnimeScoreData;
 }

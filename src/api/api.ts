@@ -111,7 +111,7 @@ export interface AnimeResponse {
   ];
 }
 
-export interface AnimeCharacters {
+export interface AnimeCharacter {
   url: string;
   image_url: string;
   name: string;
@@ -232,6 +232,52 @@ export interface MangaResponse {
   ];
 }
 
+export interface MangaCharacter {
+  mal_id: number;
+  url: string;
+  image_url: string;
+  name: string;
+  role: string;
+}
+
+export interface MangaScoreData {
+  reading: number;
+  completed: number;
+  on_hold: number;
+  dropped: number;
+  plan_to_read: number;
+  total: number;
+  scores: {
+    [rating: number]: {
+      votes: number;
+      percentage: number;
+    };
+  };
+}
+
+export interface MangaReviews {
+  [review: number]: {
+    url: string;
+    helpful_count: number;
+    date: string;
+    content: string;
+    reviewer: {
+      username: string;
+      url: string;
+      image_url: string;
+      chapters_read: number;
+      scores: {
+        overall: number;
+        story: number;
+        animation: number;
+        sound: number;
+        character: number;
+        emjoyment: number;
+      };
+    };
+  };
+}
+
 // Search related API requests:
 export async function getAnimeList(title: string): Promise<AnimeListResponse[]> {
   const options = {
@@ -267,7 +313,7 @@ export async function getAnimeData(id: number): Promise<AnimeResponse> {
   return response;
 }
 
-export async function getAnimeCharacters(id: number): Promise<AnimeCharacters[]> {
+export async function getAnimeCharacters(id: number): Promise<AnimeCharacter[]> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/characters_staff`,
     json: true,
@@ -294,7 +340,7 @@ export async function getAnimeScoreInfo(id: number): Promise<AnimeScoreData> {
   return response;
 }
 
-export async function getAnimeReviews(id: number): Promise<AnimeScoreData> {
+export async function getAnimeReviews(id: number): Promise<AnimeReviews[]> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/reviews`,
     json: true,
@@ -312,16 +358,16 @@ export async function getMangaData(id: number): Promise<MangaResponse> {
   return await rp(options);
 }
 
-export async function getMangaCharacters(id: number): Promise<any> {
+export async function getMangaCharacters(id: number): Promise<MangaCharacter[]> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}/characters`,
     json: true,
   };
   const response = await rp(options);
-  return response;
+  return response.characters;
 }
 
-export async function getMangaScoreInfo(id: number): Promise<any> {
+export async function getMangaScoreInfo(id: number): Promise<MangaScoreData> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}/stats`,
     json: true,
@@ -330,7 +376,7 @@ export async function getMangaScoreInfo(id: number): Promise<any> {
   return response.scores;
 }
 
-export async function getMangaReviews(id: number): Promise<any> {
+export async function getMangaReviews(id: number): Promise<MangaReviews[]> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}/reviews`,
     json: true,
