@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeResponse } from '../../api/api';
-import { Col, Row, Card, Breadcrumb } from 'antd';
+import { Col, Row, Card, Breadcrumb, Tabs } from 'antd';
 
 interface Props {
   data: AnimeResponse;
@@ -25,27 +25,7 @@ export const AnimeHeader = (props: Props): JSX.Element => {
           <h3>Synopsis:</h3>
           <p>{truncatedSynopsis}</p>
         </Card>
-        <Card
-          bordered={false}
-          style={{ marginTop: '5px', display: 'flex', justifyContent: 'center', fontSize: '3rem' }}
-        >
-          <Breadcrumb>
-            <Breadcrumb.Item>
-              <a href=""> Overview</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a href=""> Characters</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a href=""> Reviews</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a href=""> Stats</a>
-            </Breadcrumb.Item>
-          </Breadcrumb>
-        </Card>
       </Col>
     </Row>
   );
 };
-// style={{ width: '231px', height: '306.19px' }}

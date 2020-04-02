@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnimeHeader } from '../components/anime/AnimeHeader';
+import { AnimeTabSelector } from '../components/anime/AnimeTabSelector';
 import { Overview } from '../components/anime/overview/Overview';
 import { Layout, Spin, Result, Row, Col } from 'antd';
 import { useParams } from 'react-router-dom';
@@ -64,14 +65,12 @@ export const Anime = () => {
   return (
     <Layout style={{ height: '100%' }}>
       <AnimeHeader data={anime} />
-      <Content>
-        <Overview
-          generalInformation={anime}
-          characters={characters}
-          status={scores}
-          staff={staff}
-        />
-      </Content>
+      <AnimeTabSelector
+        generalInformation={anime}
+        characters={characters}
+        staff={staff}
+        status={scores}
+      />
     </Layout>
   );
 };
