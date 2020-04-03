@@ -27,6 +27,14 @@ export interface SearchResponse {
 }
 
 // Anime related interfaces:
+export interface CombinedAnimedResponse {
+  basic: AnimeResponse;
+  characters: AnimeCharacter[];
+  staff: AnimeStaff[];
+  scoreInfo: AnimeScoreData;
+  reviews: AnimeReviews[];
+}
+
 export interface AnimeResponse {
   mal_id: number;
   url: string;
@@ -304,7 +312,25 @@ export async function search(title: string): Promise<SearchResponse[]> {
 }
 
 // Anime specific requests:
-export async function getAnimeData(id: number): Promise<AnimeResponse> {
+export async function getCombinedAnimeData(id: number): Promise<CombinedAnimedResponse> {
+  const [basic, characters, staff, scoreInfo, reviews] = await Promise.all([
+    getAnimeBasic(id),
+    getAnimeCharacters(id),
+    getAnimeStaff(id),
+    getAnimeScoreInfo(id),
+    getAnimeReviews(id),
+  ]);
+
+  return {
+    basic,
+    characters,
+    staff,
+    scoreInfo,
+    reviews,
+  };
+}
+
+export async function getAnimeBasic(id: number): Promise<AnimeResponse> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}`,
     json: true,

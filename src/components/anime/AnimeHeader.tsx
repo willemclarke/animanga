@@ -12,16 +12,12 @@ export const AnimeHeader = (props: Props): JSX.Element => {
   const truncatedSynopsis = _.truncate(data.synopsis, { length: 1100 });
 
   return (
-    <Row justify="center" gutter={14} style={{ backgroundColor: 'EDF1F5' }}>
-      <Col span={3} style={{ marginTop: '15px' }}>
-        <Card
-          bordered={false}
-          cover={<img alt="" src={data.image_url} style={{ height: '381.19px' }} />}
-          style={{ width: '100%', height: '381.19px' }}
-        ></Card>
+    <Row justify="center" gutter={14} style={{ height: '100%' }}>
+      <Col span={3} style={{ height: '100%' }}>
+        <img alt="" src={data.image_url} width="100%" />
       </Col>
-      <Col span={14} style={{ marginTop: '15px' }}>
-        <Card bordered={false} title={data.title}>
+      <Col span={14} style={{ height: '100%' }}>
+        <Card bordered={false} title={data.title} style={{ height: '100%' }}>
           <h3>Synopsis:</h3>
           <p>{truncatedSynopsis}</p>
         </Card>

@@ -1,47 +1,20 @@
+import { Layout, Result, Spin } from 'antd';
 import React from 'react';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
+import { getCombinedAnimeData } from '../api/api';
 import { AnimeHeader } from '../components/anime/AnimeHeader';
 import { AnimeTabSelector } from '../components/anime/AnimeTabSelector';
-import { Overview } from '../components/anime/overview/Overview';
-import { Layout, Spin, Result, Row, Col } from 'antd';
-import { useParams } from 'react-router-dom';
-import { getAnimeData, getAnimeCharacters, getAnimeScoreInfo, getAnimeStaff } from '../api/api';
-import { useQuery } from 'react-query';
-
-const { Content } = Layout;
 
 export const Anime = () => {
   const { id } = useParams<{ id: string }>();
   const idToNumber = parseInt(id);
 
-  const { isFetching: animeIsFetching, data: anime, error: animeError } = useQuery(
-    'animeKey',
-    () => {
-      return getAnimeData(idToNumber);
-    },
-  );
+  const { isFetching, data, error } = useQuery('animeKey', () => {
+    return getCombinedAnimeData(idToNumber);
+  });
 
-  const { isFetching: charactersIsFetching, data: characters, error: charactersError } = useQuery(
-    'characterKey',
-    () => {
-      return getAnimeCharacters(idToNumber);
-    },
-  );
-
-  const { isFetching: scoresIsFetching, data: scores, error: scoresError } = useQuery(
-    'scoreKey',
-    () => {
-      return getAnimeScoreInfo(idToNumber);
-    },
-  );
-
-  const { isFetching: staffIsFetching, data: staff, error: staffError } = useQuery(
-    'staffKey',
-    () => {
-      return getAnimeStaff(idToNumber);
-    },
-  );
-
-  if (animeIsFetching || charactersIsFetching || scoresIsFetching || staffIsFetching) {
+  if (isFetching) {
     return (
       <Layout style={{ height: '100vh' }}>
         <Spin />
@@ -49,27 +22,20 @@ export const Anime = () => {
     );
   }
 
-  if (
-    animeError ||
-    charactersError ||
-    scoresError ||
-    staffError ||
-    !anime ||
-    !characters ||
-    !scores ||
-    !staff
-  ) {
-    return <Result status="500" title="500" subTitle={animeError?.message} />;
+  if (error || !data) {
+    return <Result status="500" title="500" subTitle={error?.message} />;
   }
+
+  const { basic, characters, staff, scoreInfo } = data;
 
   return (
     <Layout style={{ height: '100%' }}>
-      <AnimeHeader data={anime} />
+      <AnimeHeader data={basic} />
       <AnimeTabSelector
-        generalInformation={anime}
+        generalInformation={basic}
         characters={characters}
         staff={staff}
-        status={scores}
+        status={scoreInfo}
       />
     </Layout>
   );

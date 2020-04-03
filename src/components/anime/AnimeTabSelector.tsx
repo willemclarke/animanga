@@ -19,21 +19,21 @@ export const AnimeTabSelector = (props: Props) => {
   const { generalInformation, characters, staff, status } = props;
   return (
     <Row justify="center" gutter={14} style={{ backgroundColor: 'EDF1F5', marginTop: '20px' }}>
-      <GeneralInformation data={generalInformation} /> {/* Wrapped in Col span 3 */}
+      <Col span={3}>
+        <GeneralInformation data={generalInformation} />
+      </Col>
       <Col span={14}>
-        <Card>
-          <Tabs defaultActiveKey="1">
-            <TabPane tab="Overview" key="1">
-              <Overview characters={characters} staff={staff} status={status} />
-            </TabPane>
-            <TabPane tab="Characters" key="2">
-              Character Content
-            </TabPane>
-            <TabPane tab="Reviews" key="3">
-              Review Content
-            </TabPane>
-          </Tabs>
-        </Card>
+        <Tabs defaultActiveKey="overview">
+          <TabPane tab="Overview" key="overview">
+            <Overview characters={characters} staff={staff} status={status} />
+          </TabPane>
+          <TabPane tab="Characters" key="characters">
+            Character Content
+          </TabPane>
+          <TabPane tab="Reviews" key="reviews">
+            Review Content
+          </TabPane>
+        </Tabs>
       </Col>
     </Row>
   );

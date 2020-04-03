@@ -1,10 +1,8 @@
-import React from 'react';
+import { Col, Row, Typography } from 'antd';
 import _ from 'lodash';
-import { SixCharacters } from './Characters';
-import { StatusDistribution } from './StatusDistribution';
-import { StaffList } from './Staff';
+import React from 'react';
 import { AnimeCharacter, AnimeScoreData, AnimeStaff } from '../../../api/api';
-import { Col, Row, Layout } from 'antd';
+import { CharacterCard } from './Character';
 
 interface OverviewProps {
   characters: AnimeCharacter[];
@@ -12,26 +10,30 @@ interface OverviewProps {
   status: AnimeScoreData;
 }
 
-const { Content } = Layout;
-
 export const Overview = (props: OverviewProps) => {
   const { characters, status, staff } = props;
 
+  const characterCols = _.map(_.take(characters, 6), (character) => {
+    return (
+      <Col xs={12} xxl={8}>
+        <CharacterCard character={character} />
+      </Col>
+    );
+  });
+
   return (
-    <Content>
-      <Row gutter={[24, 16]} justify="center" style={{ marginTop: '20px' }}>
-        <Col span={14}>
-          <Row gutter={[12, 12]} justify="center" style={{ width: '100%' }}>
-            <SixCharacters data={characters} />
-          </Row>
-          <Row gutter={[12, 12]} justify="center" style={{ marginTop: '20px' }}>
-            <StaffList data={staff} />
-          </Row>
-          <Row gutter={[12, 12]} justify="center" style={{ marginTop: '20px' }}>
-            <StatusDistribution data={status} />
-          </Row>
-        </Col>
-      </Row>
-    </Content>
+    <>
+      <Typography.Title level={4}>Characters</Typography.Title>
+      <Row gutter={[16, 16]}>{characterCols}</Row>
+      <br />
+
+      <Typography.Title level={4}>Staff</Typography.Title>
+      <Row gutter={[16, 16]}>{characterCols}</Row>
+      <br />
+
+      <Typography.Title level={4}>Status distribution</Typography.Title>
+      <Row gutter={[16, 16]}>{characterCols}</Row>
+      <br />
+    </>
   );
 };
