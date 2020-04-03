@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeResponse } from '../../api/api';
-import { Col, Row, Card, Breadcrumb, Tabs } from 'antd';
+import { Col, Row, Card } from 'antd';
 
 interface Props {
   data: AnimeResponse;

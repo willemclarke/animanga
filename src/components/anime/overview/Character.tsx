@@ -1,19 +1,19 @@
-import { Col, Row, Typography } from 'antd';
 import React from 'react';
 import { AnimeCharacter } from '../../../api/api';
+import { Col, Row, Typography } from 'antd';
 
 interface Props {
   character: AnimeCharacter;
 }
 
-const unknownActor = {
-  name: 'Unknown',
-  language: 'Unknown',
-  image_url: 'https://s4.anilist.co/file/anilistcdn/staff/large/default.jpg',
-};
-
 export const CharacterCard = (props: Props) => {
   const { character } = props;
+
+  const unknownActor = {
+    name: 'Unknown',
+    language: 'Unknown',
+    image_url: 'https://s4.anilist.co/file/anilistcdn/staff/large/default.jpg',
+  };
 
   const actor = character.voice_actors[0] ? character.voice_actors[0] : unknownActor;
 

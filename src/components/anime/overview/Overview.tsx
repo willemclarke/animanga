@@ -1,6 +1,6 @@
-import { Col, Row, Typography } from 'antd';
-import _ from 'lodash';
 import React from 'react';
+import _ from 'lodash';
+import { Col, Row, Typography } from 'antd';
 import { AnimeCharacter, AnimeScoreData, AnimeStaff } from '../../../api/api';
 import { CharacterCard } from './Character';
 import { StaffCard } from './Staff';
@@ -30,8 +30,6 @@ export const Overview = (props: OverviewProps) => {
       </Col>
     );
   });
-
-  // const { completed, watching, plan_to_watch, on_hold, dropped, scores } = status;
 
   return (
     <>

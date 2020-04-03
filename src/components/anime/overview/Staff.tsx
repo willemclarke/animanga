@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeStaff } from '../../../api/api';
-import { Col, Row, Card, Typography } from 'antd';
+import { Col, Row, Typography } from 'antd';
 
 interface Props {
   staff: AnimeStaff;

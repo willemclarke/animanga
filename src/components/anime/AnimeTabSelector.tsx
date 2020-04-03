@@ -2,8 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import { GeneralInformation } from './GeneralInformation';
 import { AnimeResponse, AnimeCharacter, AnimeStaff, AnimeScoreData } from '../../api/api';
-import { Col, Row, Card, Breadcrumb, Tabs } from 'antd';
+import { Col, Row, Tabs } from 'antd';
 import { Overview } from './overview/Overview';
+import { CharactersTab } from './characters/CharactersTab';
 
 const { TabPane } = Tabs;
 
@@ -27,7 +28,7 @@ export const AnimeTabSelector = (props: Props) => {
             <Overview characters={characters} staff={staff} status={status} />
           </TabPane>
           <TabPane tab="Characters" key="characters">
-            Character Content
+            <CharactersTab characters={characters} />
           </TabPane>
           <TabPane tab="Reviews" key="reviews">
             Review Content

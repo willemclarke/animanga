@@ -12,7 +12,7 @@ export const StatusDistribution = (props: StatusProps) => {
 
   return (
     <>
-      <Col xs={12} xxl={8} style={{ fontSize: '1rem', padding: '5px' }}>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
         <Row
           style={{
             backgroundColor: '#68D639',
