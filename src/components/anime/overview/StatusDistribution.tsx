@@ -4,104 +4,104 @@ import { AnimeScoreData } from '../../../api/api';
 import { Col, Row, Card } from 'antd';
 
 interface StatusProps {
-  data: AnimeScoreData;
+  status: AnimeScoreData;
 }
 
 export const StatusDistribution = (props: StatusProps) => {
-  const { data } = props;
-  const { watching, completed, dropped, on_hold, plan_to_watch } = data;
+  const { status } = props;
 
   return (
-    <Row gutter={[30, 12]} style={{ width: '100%' }}>
-      <div>
-        <h3>Status Distribution</h3>
-      </div>
-      <Card
-        bordered={false}
-        style={{ width: '100%' }}
-        bodyStyle={{
-          display: 'flex',
-          alignItems: 'side-by-side',
-          justifyContent: 'center',
-          width: '100%',
-        }}
-      >
-        <Col span={5}>
-          <Card
-            title="Completed"
-            bordered={false}
-            style={{ width: '100%' }}
-            headStyle={{ backgroundColor: '#68D639', color: 'white' }}
-            bodyStyle={{
-              padding: '8px',
-              fontSize: '1rem',
-              backgroundColor: '#F0F2F5',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >{`${completed} users`}</Card>
-        </Col>
-        <Col span={5}>
-          <Card
-            title="Plan to Watch"
-            bordered={false}
-            style={{ width: '100%' }}
-            headStyle={{ backgroundColor: '#02A9FF', color: 'white' }}
-            bodyStyle={{
-              padding: '8px',
-              fontSize: '1rem',
-              backgroundColor: '#F0F2F5',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >{`${plan_to_watch} users`}</Card>
-        </Col>
-        <Col span={5}>
-          <Card
-            title="Currently Watching"
-            bordered={false}
-            style={{ width: '100%' }}
-            headStyle={{ backgroundColor: '#9256F4', color: 'white' }}
-            bodyStyle={{
-              padding: '8px',
-              fontSize: '1rem',
-              backgroundColor: '#F0F2F5',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >{`${watching} users`}</Card>
-        </Col>
-        <Col span={5}>
-          <Card
-            title="On Hold"
-            bordered={false}
-            style={{ width: '100%' }}
-            headStyle={{ backgroundColor: '#F779A4', color: 'white' }}
-            bodyStyle={{
-              padding: '8px',
-              fontSize: '1rem',
-              backgroundColor: '#F0F2F5',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >{`${on_hold} users`}</Card>
-        </Col>
-        <Col span={5}>
-          <Card
-            title="Dropped"
-            bordered={false}
-            style={{ width: '100%' }}
-            headStyle={{ backgroundColor: '#E85D75', color: 'white' }}
-            bodyStyle={{
-              padding: '8px',
-              fontSize: '1rem',
-              backgroundColor: '#F0F2F5',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >{`${dropped} users`}</Card>
-        </Col>
-      </Card>
-    </Row>
+    <>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem', padding: '5px' }}>
+        <Row
+          style={{
+            backgroundColor: '#68D639',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+          }}
+        >
+          Watching
+        </Row>
+        <Row style={{ backgroundColor: 'white', justifyContent: 'center', color: '#68D639' }}>
+          {`${status.watching} users`}
+        </Row>
+      </Col>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
+        <Row
+          style={{
+            backgroundColor: '#02A9FF',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+          }}
+        >
+          Plan to watch
+        </Row>
+        <Row
+          style={{ backgroundColor: 'white', justifyContent: 'center', color: '#02A9FF' }}
+        >{`${status.watching} users`}</Row>
+      </Col>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
+        <Row
+          style={{
+            backgroundColor: '#9256F3',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+          }}
+        >
+          Dropped
+        </Row>
+        <Row
+          style={{ backgroundColor: 'white', justifyContent: 'center', color: '#9256F3' }}
+        >{`${status.dropped} users`}</Row>
+      </Col>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
+        <Row
+          style={{
+            backgroundColor: '#F779A4',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+          }}
+        >
+          On hold
+        </Row>
+        <Row
+          style={{ backgroundColor: 'white', justifyContent: 'center', color: '#F779A4' }}
+        >{`${status.on_hold} users`}</Row>
+      </Col>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
+        <Row
+          style={{
+            backgroundColor: '#E85D75',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+          }}
+        >
+          Completed
+        </Row>
+        <Row
+          style={{ backgroundColor: 'white', justifyContent: 'center', color: '#E85D75' }}
+        >{`${status.completed} users`}</Row>
+      </Col>
+      <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
+        <Row
+          style={{
+            backgroundColor: '#1F2631',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 'bold',
+          }}
+        >
+          Total
+        </Row>
+        <Row
+          style={{ backgroundColor: 'white', justifyContent: 'center', color: '#1F2631' }}
+        >{`${status.total} users`}</Row>
+      </Col>
+    </>
   );
 };

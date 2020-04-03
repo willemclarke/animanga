@@ -9,7 +9,6 @@ const { TabPane } = Tabs;
 
 interface Props {
   generalInformation: AnimeResponse;
-  // Overview props:
   characters: AnimeCharacter[];
   staff: AnimeStaff[];
   status: AnimeScoreData;

@@ -35,7 +35,7 @@ export const GeneralInformation = (props: Props) => {
     <>
       <Card bordered={false} bodyStyle={{ padding: '8px' }}>
         <div>
-          <StarFilled style={{ color: 'yellow' }}></StarFilled>
+          <StarFilled style={{ color: '#F6AB24' }}></StarFilled>
           <span>
             <b>{` #${data.rank} Highest Rated All Time`}</b>
           </span>

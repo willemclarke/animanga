@@ -4,6 +4,7 @@ import React from 'react';
 import { AnimeCharacter, AnimeScoreData, AnimeStaff } from '../../../api/api';
 import { CharacterCard } from './Character';
 import { StaffCard } from './Staff';
+import { StatusDistribution } from './StatusDistribution';
 
 interface OverviewProps {
   characters: AnimeCharacter[];
@@ -12,7 +13,7 @@ interface OverviewProps {
 }
 
 export const Overview = (props: OverviewProps) => {
-  const { characters, staff } = props;
+  const { characters, staff, status } = props;
 
   const characterCols = _.map(_.take(characters, 6), (character) => {
     return (
@@ -30,6 +31,8 @@ export const Overview = (props: OverviewProps) => {
     );
   });
 
+  // const { completed, watching, plan_to_watch, on_hold, dropped, scores } = status;
+
   return (
     <>
       <Typography.Title level={4}>Characters</Typography.Title>
@@ -40,8 +43,10 @@ export const Overview = (props: OverviewProps) => {
       <Row gutter={[16, 16]}>{staffCols}</Row>
       <br />
 
-      {/* <Typography.Title level={4}>Status distribution</Typography.Title>
-      <Row gutter={[16, 16]}>{characterCols}</Row> */}
+      <Typography.Title level={4}>Status distribution</Typography.Title>
+      <Row gutter={[16, 16]} justify="center">
+        <StatusDistribution status={status} />
+      </Row>
       <br />
     </>
   );

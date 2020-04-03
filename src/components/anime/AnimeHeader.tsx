@@ -12,7 +12,7 @@ export const AnimeHeader = (props: Props): JSX.Element => {
   const truncatedSynopsis = _.truncate(data.synopsis, { length: 1100 });
 
   return (
-    <Row justify="center" gutter={14} style={{ height: '100%' }}>
+    <Row justify="center" gutter={14} style={{ height: '100%', marginTop: '15px' }}>
       <Col span={3} style={{ height: '100%' }}>
         <img alt="" src={data.image_url} width="100%" />
       </Col>

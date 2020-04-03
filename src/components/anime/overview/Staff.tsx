@@ -10,6 +10,8 @@ interface Props {
 export const StaffCard = (props: Props) => {
   const { staff } = props;
 
+  const firstStaffPosition = _.take(staff.positions, 1);
+
   return (
     <div style={{ display: 'flex', backgroundColor: 'white' }}>
       <div style={{ width: '60px', flex: '0 0 60px' }}>
@@ -23,7 +25,7 @@ export const StaffCard = (props: Props) => {
         </Row>
         <Row>
           <Col span={12}>
-            <Typography.Text type="secondary">{staff.positions}</Typography.Text>
+            <Typography.Text type="secondary">{firstStaffPosition}</Typography.Text>
           </Col>
         </Row>
       </div>
