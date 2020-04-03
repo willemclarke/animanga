@@ -6,7 +6,7 @@ interface Props {
   character: AnimeCharacter;
 }
 
-const UNKNOWN_ACTOR = {
+const unknownActor = {
   name: 'Unknown',
   language: 'Unknown',
   image_url: 'https://s4.anilist.co/file/anilistcdn/staff/large/default.jpg',
@@ -15,7 +15,7 @@ const UNKNOWN_ACTOR = {
 export const CharacterCard = (props: Props) => {
   const { character } = props;
 
-  const actor = character.voice_actors[0] ? character.voice_actors[0] : UNKNOWN_ACTOR;
+  const actor = character.voice_actors[0] ? character.voice_actors[0] : unknownActor;
 
   return (
     <div style={{ display: 'flex', backgroundColor: 'white' }}>
