@@ -32,7 +32,7 @@ export const GeneralInformation = (props: Props) => {
   });
 
   return (
-    <Col span={3}>
+    <>
       <Card bordered={false} bodyStyle={{ padding: '8px' }}>
         <div>
           <StarFilled style={{ color: 'yellow' }}></StarFilled>
@@ -134,6 +134,6 @@ export const GeneralInformation = (props: Props) => {
           </div>
         </div>
       </Card>
-    </Col>
+    </>
   );
 };
