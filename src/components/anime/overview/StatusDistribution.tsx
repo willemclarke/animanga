@@ -40,7 +40,7 @@ export const StatusDistribution = (props: StatusProps) => {
         </Row>
         <Row
           style={{ backgroundColor: 'white', justifyContent: 'center', color: '#02A9FF' }}
-        >{`${status.watching} users`}</Row>
+        >{`${status.plan_to_watch} users`}</Row>
       </Col>
       <Col xs={12} xxl={8} style={{ fontSize: '1rem' }}>
         <Row

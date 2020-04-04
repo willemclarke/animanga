@@ -126,7 +126,7 @@ export const GeneralInformation = (props: Props) => {
           </div>
           <div>
             <b>Members: </b>
-            {`${data.members}`}
+            {`${data.members} users`}
           </div>
           <div>
             <b>Favorites: </b>
