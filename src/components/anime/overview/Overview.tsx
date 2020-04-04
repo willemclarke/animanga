@@ -36,7 +36,6 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <>
-      <Typography.Title level={4}>Score Data</Typography.Title>
       <Row gutter={[16, 16]} justify="center">
         <AnimeStatistics score={score} votes={votes} />
       </Row>
