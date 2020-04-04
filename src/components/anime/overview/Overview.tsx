@@ -1,19 +1,22 @@
 import React from 'react';
 import _ from 'lodash';
 import { Col, Row, Typography } from 'antd';
-import { AnimeCharacter, AnimeScoreData, AnimeStaff } from '../../../api/api';
+import { AnimeCharacter, AnimeScoreData, AnimeStaff, AnimeResponse } from '../../../api/api';
 import { CharacterCard } from './Character';
 import { StaffCard } from './Staff';
 import { StatusDistribution } from './StatusDistribution';
+import { AnimeStatistics } from './Stats';
 
 interface OverviewProps {
   characters: AnimeCharacter[];
   staff: AnimeStaff[];
   status: AnimeScoreData;
+  score: AnimeResponse;
+  votes: AnimeScoreData;
 }
 
 export const Overview = (props: OverviewProps) => {
-  const { characters, staff, status } = props;
+  const { characters, staff, status, score, votes } = props;
 
   const characterCols = _.map(_.take(characters, 6), (character) => {
     return (
@@ -33,6 +36,11 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <>
+      <Typography.Title level={4}>Score Data</Typography.Title>
+      <Row gutter={[16, 16]} justify="center">
+        <AnimeStatistics score={score} votes={votes} />
+      </Row>
+
       <Typography.Title level={4}>Characters</Typography.Title>
       <Row gutter={[16, 16]}>{characterCols}</Row>
       <br />

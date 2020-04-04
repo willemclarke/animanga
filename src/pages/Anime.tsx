@@ -36,6 +36,8 @@ export const Anime = () => {
         characters={characters}
         staff={staff}
         status={scoreInfo}
+        score={basic}
+        votes={scoreInfo}
       />
     </Layout>
   );

@@ -13,10 +13,12 @@ interface Props {
   characters: AnimeCharacter[];
   staff: AnimeStaff[];
   status: AnimeScoreData;
+  score: AnimeResponse;
+  votes: AnimeScoreData;
 }
 
 export const AnimeTabSelector = (props: Props) => {
-  const { generalInformation, characters, staff, status } = props;
+  const { generalInformation, characters, staff, status, score, votes } = props;
   return (
     <Row justify="center" gutter={14} style={{ backgroundColor: 'EDF1F5', marginTop: '20px' }}>
       <Col span={3}>
@@ -25,7 +27,13 @@ export const AnimeTabSelector = (props: Props) => {
       <Col span={14}>
         <Tabs defaultActiveKey="overview">
           <TabPane tab="Overview" key="overview">
-            <Overview characters={characters} staff={staff} status={status} />
+            <Overview
+              characters={characters}
+              staff={staff}
+              status={status}
+              score={score}
+              votes={votes}
+            />
           </TabPane>
           <TabPane tab="Characters" key="characters">
             <CharactersTab characters={characters} />
