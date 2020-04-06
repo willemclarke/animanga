@@ -26,7 +26,7 @@ export const Anime = () => {
     return <Result status="500" title="500" subTitle={error?.message} />;
   }
 
-  const { basic, characters, staff, scoreInfo } = data;
+  const { basic, characters, staff, scoreInfo, reviews } = data;
 
   return (
     <Layout style={{ height: '100%' }}>
@@ -38,6 +38,7 @@ export const Anime = () => {
         status={scoreInfo}
         score={basic}
         votes={scoreInfo}
+        reviews={reviews}
       />
     </Layout>
   );

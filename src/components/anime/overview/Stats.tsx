@@ -10,14 +10,6 @@ interface Props {
   votes: AnimeScoreData;
 }
 
-// const test = _.map(votes.scores, (value, key) => {
-//   return (
-//     <Col>
-//       <Statistic title={`${key}`} value={value.percentage} suffix="%" />
-//     </Col>
-//   );
-// });
-
 export const AnimeStatistics = (props: Props) => {
   const { score, votes } = props;
 

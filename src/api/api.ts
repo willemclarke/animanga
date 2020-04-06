@@ -32,7 +32,7 @@ export interface CombinedAnimedResponse {
   characters: AnimeCharacter[];
   staff: AnimeStaff[];
   scoreInfo: AnimeScoreData;
-  reviews: AnimeReviews[];
+  reviews: AnimeReview[];
 }
 
 export interface AnimeResponse {
@@ -156,25 +156,23 @@ export interface AnimeScoreData {
   };
 }
 
-export interface AnimeReviews {
-  [review: number]: {
+export interface AnimeReview {
+  url: string;
+  helpful_count: number;
+  date: string;
+  content: string;
+  reviewer: {
+    username: string;
     url: string;
-    helpful_count: number;
-    date: string;
-    content: string;
-    reviewer: {
-      username: string;
-      url: string;
-      image_url: string;
-      episodes_seen: number;
-      scores: {
-        overall: number;
-        story: number;
-        animation: number;
-        sound: number;
-        character: number;
-        emjoyment: number;
-      };
+    image_url: string;
+    episodes_seen: number;
+    scores: {
+      overall: number;
+      story: number;
+      animation: number;
+      sound: number;
+      character: number;
+      ejoyment: number;
     };
   };
 }
@@ -366,7 +364,7 @@ export async function getAnimeScoreInfo(id: number): Promise<AnimeScoreData> {
   return response;
 }
 
-export async function getAnimeReviews(id: number): Promise<AnimeReviews[]> {
+export async function getAnimeReviews(id: number): Promise<AnimeReview[]> {
   const options = {
     url: `https://api.jikan.moe/v3/anime/${id}/reviews`,
     json: true,

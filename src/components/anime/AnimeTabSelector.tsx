@@ -1,10 +1,17 @@
 import React from 'react';
 import _ from 'lodash';
 import { GeneralInformation } from './GeneralInformation';
-import { AnimeResponse, AnimeCharacter, AnimeStaff, AnimeScoreData } from '../../api/api';
+import {
+  AnimeResponse,
+  AnimeCharacter,
+  AnimeStaff,
+  AnimeScoreData,
+  AnimeReview,
+} from '../../api/api';
 import { Col, Row, Tabs } from 'antd';
 import { Overview } from './overview/Overview';
 import { CharactersTab } from './characters/CharactersTab';
+import { ReviewList } from './reviews/ReviewList';
 
 const { TabPane } = Tabs;
 
@@ -15,10 +22,11 @@ interface Props {
   status: AnimeScoreData;
   score: AnimeResponse;
   votes: AnimeScoreData;
+  reviews: AnimeReview[];
 }
 
 export const AnimeTabSelector = (props: Props) => {
-  const { generalInformation, characters, staff, status, score, votes } = props;
+  const { generalInformation, characters, staff, status, score, votes, reviews } = props;
   return (
     <Row justify="center" gutter={14} style={{ backgroundColor: 'EDF1F5', marginTop: '20px' }}>
       <Col span={3}>
@@ -39,7 +47,7 @@ export const AnimeTabSelector = (props: Props) => {
             <CharactersTab characters={characters} />
           </TabPane>
           <TabPane tab="Reviews" key="reviews">
-            Review Content
+            <ReviewList review={reviews} />
           </TabPane>
         </Tabs>
       </Col>
