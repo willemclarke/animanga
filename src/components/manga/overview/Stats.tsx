@@ -1,16 +1,16 @@
 import React from 'react';
 import _ from 'lodash';
-import { AnimeScoreData, AnimeResponse } from '../../../api/api';
+import { MangaResponse, MangaScoreData } from '../../../api/api';
 import { Col, Row, Statistic, Typography, Divider } from 'antd';
 import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
 import { StarFilled, NumberOutlined } from '@ant-design/icons';
 
 interface Props {
-  score: AnimeResponse;
-  votes: AnimeScoreData;
+  score: MangaResponse;
+  votes: MangaScoreData;
 }
 
-export const AnimeStatistics = (props: Props) => {
+export const MangaStatistics = (props: Props) => {
   const { score, votes } = props;
 
   const scoreData = _.map(votes.scores, (score) => {

@@ -1,13 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeScoreData } from '../../../api/api';
-import { Col, Row, Card } from 'antd';
+import { Col, Row } from 'antd';
 
-interface StatusProps {
+interface Props {
   status: AnimeScoreData;
 }
 
-export const StatusDistribution = (props: StatusProps) => {
+export const StatusDistribution = (props: Props) => {
   const { status } = props;
 
   return (

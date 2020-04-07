@@ -1,6 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import { GeneralInformation } from './GeneralInformation';
+import { Col, Row, Tabs } from 'antd';
+import { Overview } from './overview/Overview';
+import { CharactersTab } from './characters/CharactersTab';
+import { ReviewList } from './reviews/ReviewList';
 import {
   AnimeResponse,
   AnimeCharacter,
@@ -8,10 +12,6 @@ import {
   AnimeScoreData,
   AnimeReview,
 } from '../../api/api';
-import { Col, Row, Tabs } from 'antd';
-import { Overview } from './overview/Overview';
-import { CharactersTab } from './characters/CharactersTab';
-import { ReviewList } from './reviews/ReviewList';
 
 const { TabPane } = Tabs;
 

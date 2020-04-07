@@ -178,6 +178,13 @@ export interface AnimeReview {
 }
 
 // Manga related interfaces:
+export interface CombinedMangaResponse {
+  basic: MangaResponse;
+  characters: MangaCharacter[];
+  scoreInfo: MangaScoreData;
+  reviews: MangaReview[];
+}
+
 export interface MangaResponse {
   mal_id: number;
   url: string;
@@ -261,7 +268,7 @@ export interface MangaScoreData {
   };
 }
 
-export interface MangaReviews {
+export interface MangaReview {
   [review: number]: {
     url: string;
     helpful_count: number;
@@ -374,7 +381,24 @@ export async function getAnimeReviews(id: number): Promise<AnimeReview[]> {
 }
 
 // Manga specific requests:
-export async function getMangaData(id: number): Promise<MangaResponse> {
+
+export async function getCombinedMangaData(id: number): Promise<CombinedMangaResponse> {
+  const [basic, characters, scoreInfo, reviews] = await Promise.all([
+    getMangaBasic(id),
+    getMangaCharacters(id),
+    getMangaScoreInfo(id),
+    getMangaReviews(id),
+  ]);
+
+  return {
+    basic,
+    characters,
+    scoreInfo,
+    reviews,
+  };
+}
+
+export async function getMangaBasic(id: number): Promise<MangaResponse> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}`,
     json: true,
@@ -397,10 +421,10 @@ export async function getMangaScoreInfo(id: number): Promise<MangaScoreData> {
     json: true,
   };
   const response = await rp(options);
-  return response.scores;
+  return response;
 }
 
-export async function getMangaReviews(id: number): Promise<MangaReviews[]> {
+export async function getMangaReviews(id: number): Promise<MangaReview[]> {
   const options = {
     url: `https://api.jikan.moe/v3/manga/${id}/reviews`,
     json: true,

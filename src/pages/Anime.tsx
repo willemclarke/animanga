@@ -23,6 +23,7 @@ export const Anime = () => {
   }
 
   if (error || !data) {
+    console.log(error);
     return <Result status="500" title="500" subTitle={error?.message} />;
   }
 

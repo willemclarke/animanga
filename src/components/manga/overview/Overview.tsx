@@ -1,31 +1,45 @@
 import React from 'react';
 import _ from 'lodash';
 import { GeneralInformation } from '../GeneralInformation';
-import { SixCharacters } from './Character';
+import { CharacterCard } from './Character';
 import { StatusDistribution } from './StatusDistribution';
+import { MangaStatistics } from './Stats';
 import { MangaCharacter, MangaScoreData, MangaResponse } from '../../../api/api';
-import { Col, Row } from 'antd';
+import { Col, Row, Typography } from 'antd';
 
 interface OverviewProps {
-  generalInformation: MangaResponse;
   characters: MangaCharacter[];
   status: MangaScoreData;
+  score: MangaResponse;
+  votes: MangaScoreData;
 }
 
 export const Overview = (props: OverviewProps) => {
-  const { generalInformation, characters, status } = props;
+  const { characters, status, score, votes } = props;
+
+  const characterCols = _.map(_.take(characters, 6), (character) => {
+    return (
+      <Col xs={12} xxl={8}>
+        <CharacterCard character={character} />
+      </Col>
+    );
+  });
 
   return (
-    <Row gutter={[24, 16]} justify="center" style={{ marginTop: '20px' }}>
-      <GeneralInformation data={generalInformation} />
-      <Col span={14}>
-        <Row gutter={[12, 12]} justify="center" style={{ width: '100%' }}>
-          <SixCharacters data={characters} />
-        </Row>
-        <Row gutter={[12, 12]} justify="center" style={{ marginTop: '20px' }}>
-          <StatusDistribution data={status} />
-        </Row>
-      </Col>
-    </Row>
+    <>
+      <Row gutter={[16, 16]} justify="center">
+        <MangaStatistics score={score} votes={votes} />
+      </Row>
+
+      <Typography.Title level={4}>Characters</Typography.Title>
+      <Row gutter={[16, 16]}>{characterCols}</Row>
+      <br />
+
+      <Typography.Title level={4}>Status Distribution</Typography.Title>
+      <Row gutter={[16, 16]}>
+        <StatusDistribution status={status} />
+      </Row>
+      <br />
+    </>
   );
 };
