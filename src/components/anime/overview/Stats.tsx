@@ -27,10 +27,6 @@ export const AnimeStatistics = (props: Props) => {
   return (
     <>
       <Col span={24}>
-        <Typography.Title level={4}>
-          General Info & Percentage of votes for scores 1-10
-        </Typography.Title>
-
         <Row
           gutter={[10, 10]}
           justify="space-around"

@@ -26,6 +26,9 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <>
+      <Typography.Title level={4}>
+        General Info & Percentage of votes for scores 1-10
+      </Typography.Title>
       <Row gutter={[16, 16]} justify="center">
         <MangaStatistics score={score} votes={votes} />
       </Row>

@@ -33,6 +33,7 @@ export interface CombinedAnimedResponse {
   staff: AnimeStaff[];
   scoreInfo: AnimeScoreData;
   reviews: AnimeReview[];
+  recommendations: AnimeRecommendation[];
 }
 
 export interface AnimeResponse {
@@ -177,12 +178,22 @@ export interface AnimeReview {
   };
 }
 
+export interface AnimeRecommendation {
+  mal_id: number;
+  url: string;
+  image_url: string;
+  recommendation_url: string;
+  title: string;
+  recommendation_count: number;
+}
+
 // Manga related interfaces:
 export interface CombinedMangaResponse {
   basic: MangaResponse;
   characters: MangaCharacter[];
   scoreInfo: MangaScoreData;
   reviews: MangaReview[];
+  recommendations: MangaRecommendation[];
 }
 
 export interface MangaResponse {
@@ -289,6 +300,15 @@ export interface MangaReview {
   };
 }
 
+export interface MangaRecommendation {
+  mal_id: number;
+  url: string;
+  image_url: string;
+  recommendation_url: string;
+  title: string;
+  recommendation_count: number;
+}
+
 // Search related API requests:
 export async function getAnimeList(title: string): Promise<AnimeListResponse[]> {
   const options = {
@@ -316,12 +336,13 @@ export async function search(title: string): Promise<SearchResponse[]> {
 
 // Anime specific requests:
 export async function getCombinedAnimeData(id: number): Promise<CombinedAnimedResponse> {
-  const [basic, characters, staff, scoreInfo, reviews] = await Promise.all([
+  const [basic, characters, staff, scoreInfo, reviews, recommendations] = await Promise.all([
     getAnimeBasic(id),
     getAnimeCharacters(id),
     getAnimeStaff(id),
     getAnimeScoreInfo(id),
     getAnimeReviews(id),
+    getAnimeRecommendations(id),
   ]);
 
   return {
@@ -330,6 +351,7 @@ export async function getCombinedAnimeData(id: number): Promise<CombinedAnimedRe
     staff,
     scoreInfo,
     reviews,
+    recommendations,
   };
 }
 
@@ -378,14 +400,24 @@ export async function getAnimeReviews(id: number): Promise<AnimeReview[]> {
   return response.reviews;
 }
 
+export async function getAnimeRecommendations(id: number): Promise<AnimeRecommendation[]> {
+  const options = {
+    url: `https://api.jikan.moe/v3/anime/${id}/recommendations`,
+    json: true,
+  };
+  const response = await rp(options);
+  return response.recommendations;
+}
+
 // Manga specific requests:
 
 export async function getCombinedMangaData(id: number): Promise<CombinedMangaResponse> {
-  const [basic, characters, scoreInfo, reviews] = await Promise.all([
+  const [basic, characters, scoreInfo, reviews, recommendations] = await Promise.all([
     getMangaBasic(id),
     getMangaCharacters(id),
     getMangaScoreInfo(id),
     getMangaReviews(id),
+    getMangaRecommendations(id),
   ]);
 
   return {
@@ -393,6 +425,7 @@ export async function getCombinedMangaData(id: number): Promise<CombinedMangaRes
     characters,
     scoreInfo,
     reviews,
+    recommendations,
   };
 }
 
@@ -429,4 +462,13 @@ export async function getMangaReviews(id: number): Promise<MangaReview[]> {
   };
   const response = await rp(options);
   return response.reviews;
+}
+
+export async function getMangaRecommendations(id: number): Promise<MangaRecommendation[]> {
+  const options = {
+    url: `https://api.jikan.moe/v3/manga/${id}/recommendations`,
+    json: true,
+  };
+  const response = await rp(options);
+  return response.recommendations;
 }

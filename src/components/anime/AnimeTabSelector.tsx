@@ -11,6 +11,7 @@ import {
   AnimeStaff,
   AnimeScoreData,
   AnimeReview,
+  AnimeRecommendation,
 } from '../../api/api';
 
 const { TabPane } = Tabs;
@@ -23,17 +24,28 @@ interface Props {
   score: AnimeResponse;
   votes: AnimeScoreData;
   reviews: AnimeReview[];
+  recommendations: AnimeRecommendation[];
 }
 
 export const AnimeTabSelector = (props: Props) => {
-  const { generalInformation, characters, staff, status, score, votes, reviews } = props;
+  const {
+    generalInformation,
+    characters,
+    staff,
+    status,
+    score,
+    votes,
+    reviews,
+    recommendations,
+  } = props;
+
   return (
     <Row justify="center" gutter={14} style={{ backgroundColor: 'EDF1F5', marginTop: '20px' }}>
       <Col span={3}>
         <GeneralInformation data={generalInformation} />
       </Col>
       <Col span={14}>
-        <Tabs defaultActiveKey="overview">
+        <Tabs defaultActiveKey="overview" tabBarStyle={{ justifyItems: 'center' }}>
           <TabPane tab="Overview" key="overview">
             <Overview
               characters={characters}
@@ -41,6 +53,7 @@ export const AnimeTabSelector = (props: Props) => {
               status={status}
               score={score}
               votes={votes}
+              recommendations={recommendations}
             />
           </TabPane>
           <TabPane tab="Characters" key="characters">

@@ -1,5 +1,5 @@
-import { Layout, Result, Spin } from 'antd';
 import React from 'react';
+import { Layout, Result, Spin } from 'antd';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { getCombinedAnimeData } from '../api/api';
@@ -27,7 +27,7 @@ export const Anime = () => {
     return <Result status="500" title="500" subTitle={error?.message} />;
   }
 
-  const { basic, characters, staff, scoreInfo, reviews } = data;
+  const { basic, characters, staff, scoreInfo, reviews, recommendations } = data;
 
   return (
     <Layout style={{ height: '100%' }}>
@@ -40,6 +40,7 @@ export const Anime = () => {
         score={basic}
         votes={scoreInfo}
         reviews={reviews}
+        recommendations={recommendations}
       />
     </Layout>
   );

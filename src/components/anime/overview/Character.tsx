@@ -25,10 +25,18 @@ export const CharacterCard = (props: Props) => {
       <div style={{ flex: '1', padding: '5px' }}>
         <Row>
           <Col span={12}>
-            <Typography.Text strong>{character.name}</Typography.Text>
+            <Typography.Text strong>
+              <a href={character.url} style={{ color: '#595959' }}>
+                {character.name}
+              </a>
+            </Typography.Text>
           </Col>
           <Col span={12} style={{ textAlign: 'right' }}>
-            <Typography.Text strong>{actor.name}</Typography.Text>
+            <Typography.Text strong>
+              <a href={character.url} style={{ color: '#595959' }}>
+                {actor.name}
+              </a>
+            </Typography.Text>
           </Col>
         </Row>
         <Row>

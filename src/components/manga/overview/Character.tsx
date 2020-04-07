@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { MangaCharacter } from '../../../api/api';
-import { Col, Row, Card, Typography } from 'antd';
+import { Col, Row, Typography } from 'antd';
 
 interface Props {
   character: MangaCharacter;
@@ -18,7 +18,11 @@ export const CharacterCard = (props: Props) => {
       <div style={{ flex: '1', padding: '5px' }}>
         <Row>
           <Col span={12}>
-            <Typography.Text strong>{character.name}</Typography.Text>
+            <Typography.Text strong>
+              <a href={character.url} style={{ color: '#595959' }}>
+                {character.name}
+              </a>
+            </Typography.Text>
           </Col>
         </Row>
         <Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { MangaResponse, MangaScoreData } from '../../../api/api';
-import { Col, Row, Statistic, Typography, Divider } from 'antd';
+import { Col, Row, Statistic } from 'antd';
 import { Sparklines, SparklinesBars, SparklinesLine } from 'react-sparklines';
 import { StarFilled, NumberOutlined } from '@ant-design/icons';
 
@@ -27,10 +27,6 @@ export const MangaStatistics = (props: Props) => {
   return (
     <>
       <Col span={24}>
-        <Typography.Title level={4}>
-          General Info & Percentage of votes for scores 1-10
-        </Typography.Title>
-
         <Row
           gutter={[10, 10]}
           justify="space-around"

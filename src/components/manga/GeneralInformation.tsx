@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { MangaResponse } from '../../api/api';
-import { Col, Card, Divider } from 'antd';
+import { Card, Divider } from 'antd';
 import { StarFilled, HeartFilled } from '@ant-design/icons';
 
 interface Props {
@@ -27,7 +27,7 @@ export const GeneralInformation = (props: Props) => {
     <>
       <Card bordered={false} bodyStyle={{ padding: '8px' }}>
         <div>
-          <StarFilled style={{ color: 'yellow' }}></StarFilled>
+          <StarFilled style={{ color: '#F6AB24' }}></StarFilled>
           <span>
             <b>{` #${data.rank} Highest Rated All Time`}</b>
           </span>

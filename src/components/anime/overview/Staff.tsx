@@ -20,7 +20,11 @@ export const StaffCard = (props: Props) => {
       <div style={{ flex: '1', padding: '5px' }}>
         <Row>
           <Col span={12}>
-            <Typography.Text strong>{staff.name}</Typography.Text>
+            <Typography.Text strong>
+              <a href={staff.url} style={{ color: '#595959' }}>
+                {staff.name}
+              </a>
+            </Typography.Text>
           </Col>
         </Row>
         <Row>
