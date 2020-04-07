@@ -1,11 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
-import { AnimeReview } from '../../../api/api';
+import { MangaReview } from '../../../api/api';
 import { Col, Row, List, Avatar, Divider } from 'antd';
 import { StarFilled, LikeFilled } from '@ant-design/icons';
 
 interface Props {
-  reviews: AnimeReview[];
+  reviews: MangaReview[];
 }
 
 export const ReviewList = (props: Props) => {

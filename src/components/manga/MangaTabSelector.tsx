@@ -4,6 +4,8 @@ import { GeneralInformation } from './GeneralInformation';
 import { MangaResponse, MangaCharacter, MangaScoreData, MangaReview } from '../../api/api';
 import { Col, Row, Tabs } from 'antd';
 import { Overview } from './overview/Overview';
+import { CharactersTab } from '../manga/characters/CharactersTab';
+import { ReviewList } from '../manga/reviews/ReviewList';
 
 const { TabPane } = Tabs;
 
@@ -30,10 +32,10 @@ export const MangaTabSelector = (props: Props) => {
             <Overview characters={characters} status={status} score={score} votes={votes} />
           </TabPane>
           <TabPane tab="Characters" key="characters">
-            PLACEHOLDER
+            <CharactersTab characters={characters} />
           </TabPane>
           <TabPane tab="Reviews" key="reviews">
-            PLACEHOLDER
+            <ReviewList reviews={reviews} />
           </TabPane>
         </Tabs>
       </Col>

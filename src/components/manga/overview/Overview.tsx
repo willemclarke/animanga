@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import { GeneralInformation } from '../GeneralInformation';
 import { CharacterCard } from './Character';
 import { StatusDistribution } from './StatusDistribution';
 import { MangaStatistics } from './Stats';

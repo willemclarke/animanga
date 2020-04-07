@@ -269,24 +269,22 @@ export interface MangaScoreData {
 }
 
 export interface MangaReview {
-  [review: number]: {
+  url: string;
+  helpful_count: number;
+  date: string;
+  content: string;
+  reviewer: {
+    username: string;
     url: string;
-    helpful_count: number;
-    date: string;
-    content: string;
-    reviewer: {
-      username: string;
-      url: string;
-      image_url: string;
-      chapters_read: number;
-      scores: {
-        overall: number;
-        story: number;
-        animation: number;
-        sound: number;
-        character: number;
-        emjoyment: number;
-      };
+    image_url: string;
+    chapters_read: number;
+    scores: {
+      overall: number;
+      story: number;
+      animation: number;
+      sound: number;
+      character: number;
+      emjoyment: number;
     };
   };
 }

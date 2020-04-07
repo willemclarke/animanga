@@ -47,7 +47,7 @@ export const AnimeTabSelector = (props: Props) => {
             <CharactersTab characters={characters} />
           </TabPane>
           <TabPane tab="Reviews" key="reviews">
-            <ReviewList review={reviews} />
+            <ReviewList reviews={reviews} />
           </TabPane>
         </Tabs>
       </Col>
