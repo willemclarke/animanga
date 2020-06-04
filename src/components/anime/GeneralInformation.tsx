@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeResponse } from '../../api/api';
-import { Col, Card, Divider } from 'antd';
+import { Card, Divider } from 'antd';
 import { StarFilled, HeartFilled } from '@ant-design/icons';
 
 interface Props {

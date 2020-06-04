@@ -1,19 +1,21 @@
 import React from 'react';
 import _ from 'lodash';
 import { AnimeReview } from '../../../api/api';
-import { Col, Row, List, Avatar, Divider } from 'antd';
+import { Col, Row, List, Avatar, Divider, Typography } from 'antd';
 import { StarFilled, LikeFilled } from '@ant-design/icons';
 
 interface Props {
   reviews: AnimeReview[];
 }
 
+const { Paragraph } = Typography;
+
 export const ReviewList = (props: Props) => {
   const { reviews } = props;
 
   const data = _.map(reviews, (review) => {
     return {
-      description: review.content,
+      content: review.content,
       avatar: review.reviewer.image_url,
       username: review.reviewer.username,
       usernameUrl: review.reviewer.url,
@@ -56,7 +58,7 @@ export const ReviewList = (props: Props) => {
               title={<a href={`${item.usernameUrl}`}>{`Review by: ${item.username}`}</a>}
               description={descriptionText(item.score, item.helpfulCount)}
             />
-            {item.description}
+            <Paragraph ellipsis={{ rows: 6, expandable: true }}>{item.content}</Paragraph>
           </List.Item>
         )}
       />
