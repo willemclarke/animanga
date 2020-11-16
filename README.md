@@ -19,15 +19,15 @@ Simplistic clone mix of anilist and myanimelist, wherein it only displays anime 
 
 - Preview of a anime/manga's information overview tab
   <p float="left">
-      <img src="filesystem:chrome-extension://fdpohaocaechififmbbbbbknoalclacl/persistent/screencapture-localhost-3000-anime-1827-2020-11-16-12_49_55.png">
+      <img src="https://i.gyazo.com/597e57ef3ea7d6ad41584b8387bef36e.png">
     </p>
 
-- Preview of an anime/manga's characters tab
+- Preview of an anime/manga's characters tab (apologies for low quality screenshot, used plugin to capture whole screen)
   <p float="left">
-    <img src="filesystem:chrome-extension://fdpohaocaechififmbbbbbknoalclacl/persistent/screencapture-localhost-3000-anime-1827-2020-11-16-12_51_12.png">
+    <img src="https://i.gyazo.com/963e9a784b24db9b6458e2cb5b92b4e7.png">
     </p>
 
 - Preview of a anime/manga's reviews tab
   <p float="left">
-      <img src="chrome-extension://fdpohaocaechififmbbbbbknoalclacl/capture.html?id=6&url=http%3A%2F%2Flocalhost%3A3000%2Fanime%2F1827">
+      <img src="https://i.gyazo.com/5129521c7a606a8a9a678c97357dd45c.png">
     </p>
